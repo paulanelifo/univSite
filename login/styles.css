@@ -1,0 +1,85 @@
+/* Smaller login container floating styling */
+.login-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 15px; /* Reduced padding */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px; /* Reduced width */
+    z-index: 1000; /* Ensures the login is on top of other elements */
+}
+
+.login-container hr{
+    margin: 20px;
+}
+
+/* Form elements styling */
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 30px; /* Reduced margin */
+}
+
+.form-group {
+    margin-bottom: 10px; /* Reduced margin */
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+}
+
+.form-group input {
+    width: 95%;
+    padding: 6px; /* Reduced padding */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 8px; /* Reduced padding */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px; /* Reduced font size */
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.fgotpw {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+    text-align: center;
+}
+
+.login-button{
+    margin-top: 30px;
+}
+
+.register-container{
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+.register-container button{
+    margin-top: 10px;
+    width: 90px;
+    background-color: #00c703;
+}
+
+.register-container button:hover{
+    background-color: #009e03;
+}

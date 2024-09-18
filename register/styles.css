@@ -1,0 +1,36 @@
+/* Smaller login container floating styling */
+.register-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 15px; /* Reduced padding */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px; /* Reduced width */
+    z-index: 1000; /* Ensures the login is on top of other elements */
+}
+
+.registration-header{
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.registration-header h2{
+    text-align: center;
+}
+
+.many-dots {
+    display: flex; /* Use flexbox to align dots horizontally */
+    gap: 5px; /* Space between the dots */
+    justify-content: center;
+    margin-top: -10px;
+}
+
+.dot {
+    width: 10px; /* Width of each dot */
+    height: 10px; /* Height of each dot */
+    background-color: #33333344; /* Color of the dots */
+    border-radius: 50%; /* Makes the dots circular */
+}
