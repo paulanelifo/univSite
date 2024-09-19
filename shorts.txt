@@ -1,0 +1,198 @@
+Html
+      <form class="first-form">
+        <!-- Text Input -->
+        <div class="form-group">
+          <label for="fullname" class="form-label">Full Name</label>
+          <input
+            type="text"
+            id="fullname"
+            name="fullname"
+            class="form-input"
+            required
+          />
+        </div>
+        <!-- Email Input -->
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-input"
+            required
+          />
+        </div>
+        <!-- Password Input -->
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            class="form-input"
+            required
+          />
+        </div>
+        <!-- Dropdown -->
+        <div class="form-group">
+          <label for="country" class="form-label">Country</label>
+          <select id="country" name="country" class="form-select">
+            <option value="usa">United States</option>
+            <option value="canada">Canada</option>
+            <option value="uk">United Kingdom</option>
+          </select>
+        </div>
+        <!-- Radio Buttons -->
+        <div class="form-group">
+          <span class="form-label">Gender</span>
+          <label
+            ><input
+              type="radio"
+              name="gender"
+              value="male"
+              class="form-radio"
+            />
+            Male</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="gender"
+              value="female"
+              class="form-radio"
+            />
+            Female</label
+          >
+          <label
+            ><input
+              type="radio"
+              name="gender"
+              value="other"
+              class="form-radio"
+            />
+            Other</label
+          >
+        </div>
+        <!-- Checkbox -->
+        <div class="form-group">
+          <label
+            ><input
+              type="checkbox"
+              name="agree"
+              class="form-checkbox"
+              required
+            />
+            I agree to the terms and conditions</label
+          >
+        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="form-button">Register</button>
+      </form>
+
+ CSS
+
+/* Form Group */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Form Labels */
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Text, Email, and Password Inputs */
+.form-input {
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Dropdown Select */
+.form-select {
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Radio Buttons */
+.form-radio {
+    margin-right: 5px;
+}
+
+/* Checkbox */
+.form-checkbox {
+    margin-right: 5px;
+}
+
+/* Submit Button */
+.form-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.form-button:hover {
+    background-color: #45a049;
+}
+
+ 
+Personal Information
+•	Full Name: First name, middle name, and last name.
+•	Date of Birth: To confirm age eligibility and for identification purposes.
+•	Gender: Male, female, or other.
+•	Nationality: For demographic and statistical purposes.
+•	Civil Status: Single, married, etc.
+•	Contact Information:
+o	Phone Number: For communication and updates.
+o	Email Address: For official correspondence and notifications.
+•	Permanent Address: Full address including city, state, and zip code.
+•	Current/Temporary Address: If different from the permanent address.
+Academic Information
+•	High School Name: The name of the high school attended.
+•	High School Address: Location of the high school.
+•	High School Graduation Date: When the student graduated.
+•	GPA/Academic Honors: Optional, for evaluating academic performance.
+•	Intended Major/Program: The field of study the student is interested in.
+•	Previous College Information: If the student has prior college experience (transfer students).
+Additional Information
+•	Housing Preferences: On-campus or off-campus housing options.
+•	Special Needs/Accommodations: Any special assistance or accommodations required.
+•	Extracurricular Interests: Clubs, sports, or other activities the student is interested in.
+•	Financial Aid Information: Interest in scholarships, grants, or financial aid.
+
+Identification and Documentation
+•	Student ID or Application Number: If already assigned by the college.
+•	Government Issued ID: Details for verification purposes (e.g., passport, driver's license).
+•	Passport-sized Photo: For student ID card creation.
+•	Birth Certificate: Often required for verifying age and identity.
+
+Family Information
+•	Parent/Guardian Names: Full names of parents or legal guardians.
+•	Parent/Guardian Contact Information: Phone numbers and email addresses.
+•	Parent/Guardian Address: If different from the student’s address.
+•	Parent/Guardian Occupation: For demographic and financial aid purposes.
+Emergency Contact Information
+•	Emergency Contact Name: Name of the person to contact in case of emergency.
+•	Relationship to Student: How this person is related to the student (e.g., parent, sibling).
+•	Emergency Contact Phone Number: Phone number to reach the emergency contact.
+Health Information
+•	Medical History: Relevant medical conditions or allergies.
+•	Health Insurance Information: Insurance provider and policy number.
+•	Immunization Records: Proof of required vaccinations, depending on the college's requirements.
+Enrollment Information
+•	Enrollment Status: Full-time or part-time.
+•	Desired Enrollment Term: Semester or quarter when the student plans to start (e.g., Fall 2024).

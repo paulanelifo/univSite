@@ -1,51 +1,85 @@
-/* colors ----------------------------------------------------------------------------------- */
-:root {
-    /* https://coolors.co/fffffa-0d5c63-44a1a0-78cdd7-247b7b */
-    --color1: #FFFFFA;
-    /* baby powder */
-    --color2: #0D5C63;
-    /* carribean current */
-    --color3: #44A1A0;
-    /* verdigris */
-    --color4: #78CDD7;
-    /* tiffany blue */
-    --color5: #247B7B;
-    /* teal */
-    /* https://coolors.co/436436-d6f599-d2ff28-c84c09-420217 */
-    --colora: #436436;
-    /* hunter green */
-    --colorb: #d6f599;
-    --colorb-hover: #c0db8a;
-    /* Mindaro */
-    --colorc: #d2ff28;
-    /* lime */
-    --colord: #c84c09;
-    --colord-hover: #ca7141;
-    /* syracuse red orange */
-    --colore: #420217;
-    /* chocolate cosmos */
+
+  
+html, body{
+    margin: 0;
+    height: 100vh;
+}
+html{
+    /* Prevent zoom by setting a base scale for the viewport */
+    transform: scale(1);
+    transform-origin: 0 0; /* Ensure scaling originates from the top-left corner */
 }
 
-/* CONTAINER ----------------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/* GLOBAL ELEMENT STYLES */
+/* -------------------------------------------------------------------------- */
+
+/* STEP ------------------------------------------------------------------*/
+
+.step {
+    display: none;
+    height: 58vh;
+    margin-top: 3vh;
+  }
+  
+.step.active {
+display: block;
+}  
+
+/* SCROLL PANE ------------------------------------------------------------------ */
+
+/* Container for scrollable content */
+.power-scroll {
+    overflow: auto; /* Enables scrolling */
+    border: none;
+    padding-right: 1vw;
+  }  
+
+/* Custom scrollbar styles */
+.power-scroll::-webkit-scrollbar {
+    width: 10px;             /* Width of the scrollbar */
+}
+
+/* Hide the scrollbar track */
+.power-scroll::-webkit-scrollbar-track {
+    background: transparent; /* Hide the scrollbar track */
+}
+
+/* Style the scrollbar thumb */
+.power-scroll::-webkit-scrollbar-thumb {
+    background: #888;        /* Color of the scrollbar thumb */
+    border-radius: 10px;     /* Rounded corners for the scrollbar thumb */
+}
+
+/* Style the scrollbar thumb on hover */
+.power-scroll::-webkit-scrollbar-thumb:hover {
+    background: #555;        /* Darker color on hover */
+}
+
+/* -------------------------------------------------------------------------- */
+/* MAIN REGISTRATION CONTAINER STYLES */
+/* -------------------------------------------------------------------------- */
 
 /* Smaller login container floating styling */
 .register-container {
-    position: absolute;
+    position: absolute; /* Absolute positioning for centering */
+    width: 85vw;
+    height: 80vh;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    padding: 15px; /* Reduced padding */
+    transform: translate(-50%, -50%); /* Adjusts for element's own width and height */
+    background-color: #fffef1;
+    padding-left: 3vh; 
+    padding-right: 3vh; 
+    padding-bottom: 80px;
+    padding-top: 1.5%;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 250px; /* Reduced width */
     z-index: 1000; /* Ensures the login is on top of other elements */
-    padding-bottom: 80px;
-}
-
-.registration-header{
-    margin-top: 30px;
-    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    
 }
 
 .registration-header h2{
@@ -60,46 +94,139 @@
 }
 
 .dot {
-    width: 10px; /* Width of each dot */
-    height: 10px; /* Height of each dot */
+    width: 7px; /* Width of each dot */
+    height: 7px; /* Height of each dot */
     background-color: #33333344; /* Color of the dots */
     border-radius: 50%; /* Makes the dots circular */
 }
-/* SCROLL ----------------------------------------------------------------------------------- */
 
-/* Container for scrollable content */
-.scroll-pane {
-    width: 100%; /* Set a fixed width for the scroll pane */
-    height: 200px; /* Set a fixed height for the scroll pane */
-    overflow-y: scroll; /* Enable vertical scrolling */
-    border: 1px solid #ccc; /* Optional border */
-    padding: 10px; /* Optional padding */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
-    margin-bottom: 10px;
+/* -------------------------------------------------------------------------- */
+/* NEXT BUTTON */
+/* -------------------------------------------------------------------------- */
+.next-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    will-change: box-shadow,transform;
+    background: radial-gradient( 100% 100% at 100% 0%, #ffc48c 0%, #ff6111 100% );
+    box-shadow: 0px 2px 4px rgba(66, 55, 35, 0.4), 0px 7px 13px -3px rgba(66, 54, 35, 0.3), inset 0px -3px 0px rgba(111, 107, 58, 0.5);
+    padding: 0 32px;
+    border-radius: 6px;
+    text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+    transition: box-shadow 0.15s ease,transform 0.15s ease;
+    position: absolute;
+    color: #fff;
+    font-size: 14px;
+    bottom: 3vh;
+    right: 1vw;
+    height: 5vh;
+    width: 20vw;
+}
+
+.next-button:hover {
+    box-shadow: 0px 4px 8px rgba(66, 55, 35, 0.4), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #e03c3c;
+    transform: translateY(-2px);
+}
+.next-button:active{
+    box-shadow: inset 0px 3px 7px #e03c3c;
+    transform: translateY(2px);
+}
+
+/* -------------------------------------------------------------------------- */
+/* STEP 1 - TERMS AND CONDITIONS */
+/* -------------------------------------------------------------------------- */
+
+#step1-tnc h1{
+    margin-bottom: -1vh;
+}
+
+#step1-tnc .power-scroll {    
+    border: 1px solid black;
+    height: 50vh;
 }
 
 /* Optional styles for the paragraph inside the scroll pane */
-.scroll-pane p {
+#step1-tnc .power-scroll p {
     margin: 0;
+    text-align: justify;
 }
 
-/* NEXT BUTTON----------------------------------------------------------------------------------- */
+.agree-checkbox{
+    margin-top: 1vh;
+    margin-bottom: 0;
+}
 
-.next-button{
-    margin-top: 10px;
-    width: 90px;
-    background-color: var(--colord);
+/* -------------------------------------------------------------------------- */
+/* STEP 2 - PERSONAL INFORMATION */
+/* -------------------------------------------------------------------------- */
+
+/* Container for the scroll pane */
+#scroll2 {
+    width: 100%;              /* Adjust width as needed */
+    height: 100%;             /* Adjust height as needed */
+    overflow: auto;          /* Enable scrolling */
+    padding: 15px;           /* Padding inside the pane */
+    box-sizing: border-box;  /* Include padding and border in the element's total width and height */
+}
+
+/* Optional: Adjust padding and text alignment inside the scroll pane */
+#scroll2 p {
+    margin: 0;               /* Remove default margin */
+    line-height: 1.6;        /* Improve readability */
+}
+
+/* Style for the form content within each step */
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Style for each form group */
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style for form labels */
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+/* Style for form inputs and selects */
+.form-group input, .form-group select {
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* Style for the phone number input */
+.form-group input[type="tel"] {
+    padding: 0.75rem;
+}
+
+/* Style for the date input */
+.form-group input[type="date"] {
+    padding: 0.75rem;
+}
+
+/* Style for the submit button */
+button.next-button {
+    background-color: #4CAF50;
     color: white;
-    width: 75px;
-    height: 33px;
     border: none;
-    border-radius: 10px;  
-    position: absolute;
-    bottom: 5%;
-    right: 5%;      
-    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3); /* Shadow on hover */
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
 }
 
-.next-button:hover{
-    background-color: var(--colord-hover);
+button.next-button:hover {
+    background-color: #45a049;
 }
