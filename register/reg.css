@@ -1,0 +1,105 @@
+/* colors ----------------------------------------------------------------------------------- */
+:root {
+    /* https://coolors.co/fffffa-0d5c63-44a1a0-78cdd7-247b7b */
+    --color1: #FFFFFA;
+    /* baby powder */
+    --color2: #0D5C63;
+    /* carribean current */
+    --color3: #44A1A0;
+    /* verdigris */
+    --color4: #78CDD7;
+    /* tiffany blue */
+    --color5: #247B7B;
+    /* teal */
+    /* https://coolors.co/436436-d6f599-d2ff28-c84c09-420217 */
+    --colora: #436436;
+    /* hunter green */
+    --colorb: #d6f599;
+    --colorb-hover: #c0db8a;
+    /* Mindaro */
+    --colorc: #d2ff28;
+    /* lime */
+    --colord: #c84c09;
+    --colord-hover: #ca7141;
+    /* syracuse red orange */
+    --colore: #420217;
+    /* chocolate cosmos */
+}
+
+/* CONTAINER ----------------------------------------------------------------------------------- */
+
+/* Smaller login container floating styling */
+.register-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 15px; /* Reduced padding */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px; /* Reduced width */
+    z-index: 1000; /* Ensures the login is on top of other elements */
+    padding-bottom: 80px;
+}
+
+.registration-header{
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.registration-header h2{
+    text-align: center;
+}
+
+.many-dots {
+    display: flex; /* Use flexbox to align dots horizontally */
+    gap: 5px; /* Space between the dots */
+    justify-content: center;
+    margin-top: -10px;
+}
+
+.dot {
+    width: 10px; /* Width of each dot */
+    height: 10px; /* Height of each dot */
+    background-color: #33333344; /* Color of the dots */
+    border-radius: 50%; /* Makes the dots circular */
+}
+/* SCROLL ----------------------------------------------------------------------------------- */
+
+/* Container for scrollable content */
+.scroll-pane {
+    width: 100%; /* Set a fixed width for the scroll pane */
+    height: 200px; /* Set a fixed height for the scroll pane */
+    overflow-y: scroll; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional border */
+    padding: 10px; /* Optional padding */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+    margin-bottom: 10px;
+}
+
+/* Optional styles for the paragraph inside the scroll pane */
+.scroll-pane p {
+    margin: 0;
+}
+
+/* NEXT BUTTON----------------------------------------------------------------------------------- */
+
+.next-button{
+    margin-top: 10px;
+    width: 90px;
+    background-color: var(--colord);
+    color: white;
+    width: 75px;
+    height: 33px;
+    border: none;
+    border-radius: 10px;  
+    position: absolute;
+    bottom: 5%;
+    right: 5%;      
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3); /* Shadow on hover */
+}
+
+.next-button:hover{
+    background-color: var(--colord-hover);
+}
