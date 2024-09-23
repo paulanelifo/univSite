@@ -14,19 +14,57 @@ html{
 /* GLOBAL ELEMENT STYLES */
 /* -------------------------------------------------------------------------- */
 
-/* STEP ------------------------------------------------------------------*/
+/* -------------------------------------------------------------------------- */
+/* STEP */
+/* -------------------------------------------------------------------------- */
 
+/* Keyframes for fade-in from left */
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-25%); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Keyframes for fade-out with sliding to the right */
+@keyframes fadeOutRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0); 
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(25%); 
+    }
+}
+
+/* Step animation */
 .step {
     display: none;
+    opacity: 0;
     height: 58vh;
     margin-top: 3vh;
-  }
-  
-.step.active {
-display: block;
-}  
+    transition: opacity 0.5s ease, transform 0.5s ease;  /* Ensure both opacity and transform transition */
+}
 
-/* SCROLL PANE ------------------------------------------------------------------ */
+.step.active {
+    display: block;
+    animation: fadeInLeft 0.25s ease forwards; /* Fade-in and slide-in from left */
+}
+
+.step.leaving {
+    animation: fadeOutRight 0.25s ease forwards; /* Fade-out and slide-out to right */
+}
+
+
+  
+/* -------------------------------------------------------------------------- */
+/* SCROLL PANE */
+/* -------------------------------------------------------------------------- */
 
 /* Container for scrollable content */
 .power-scroll {
@@ -62,6 +100,7 @@ display: block;
 
 /* Smaller login container floating styling */
 .register-container {
+    overflow: hidden;
     position: absolute; /* Absolute positioning for centering */
     width: 85vw;
     height: 80vh;
@@ -120,7 +159,7 @@ display: block;
     position: absolute;
     color: #fff;
     font-size: 14px;
-    bottom: 3vh;
+    bottom: 2.5vh;
     right: 1vw;
     height: 5vh;
     width: 20vw;
@@ -131,6 +170,41 @@ display: block;
     transform: translateY(-2px);
 }
 .next-button:active{
+    box-shadow: inset 0px 3px 7px #e03c3c;
+    transform: translateY(2px);
+}
+
+/* -------------------------------------------------------------------------- */
+/* PREVIOUS BUTTON */
+/* -------------------------------------------------------------------------- */
+.prev-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    will-change: box-shadow,transform;
+    background: radial-gradient( 100% 100% at 100% 0%, #ffc48c 0%, #ff6111 100% );
+    box-shadow: 0px 2px 4px rgba(66, 55, 35, 0.4), 0px 7px 13px -3px rgba(66, 54, 35, 0.3), inset 0px -3px 0px rgba(111, 107, 58, 0.5);
+    padding: 0 32px;
+    border-radius: 6px;
+    text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+    transition: box-shadow 0.15s ease,transform 0.15s ease;
+    position: absolute;
+    color: #fff;
+    font-size: 14px;
+    bottom: 2.5vh;
+    left: 1vw;
+    height: 5vh;
+    width: 20vw;
+}
+
+.prev-button:hover {
+    box-shadow: 0px 4px 8px rgba(66, 55, 35, 0.4), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #e03c3c;
+    transform: translateY(-2px);
+}
+.prev-button:active{
     box-shadow: inset 0px 3px 7px #e03c3c;
     transform: translateY(2px);
 }
@@ -151,6 +225,7 @@ display: block;
 /* Optional styles for the paragraph inside the scroll pane */
 #step1-tnc .power-scroll p {
     margin: 0;
+    padding: 1vw;
     text-align: justify;
 }
 
