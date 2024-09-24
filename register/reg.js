@@ -17,7 +17,6 @@ class RegistrationData {
     }
 }
 
-
 class FormStepper {
     
     constructor() {
@@ -66,6 +65,7 @@ class FormStepper {
         }
         return true;
     }
+    
 
     // Step 2: Personal Information
     checkRequiredFields() {
@@ -197,13 +197,21 @@ class FormStepper {
     updateSteps() {
         this.nextButton.textContent = this.selectedState === 5 ? 'Register' : 'Next';
         this.nextButton.style.fontWeight = this.selectedState === 5 ? 'bold' : 'normal';
-
+    
         const activeStep = document.querySelector('.step.active');
         if (activeStep) {
             activeStep.classList.remove('active');
         }
         this.showNextStep();
+    
+        // Hide the previous button if on the first step
+        if (this.selectedState === 1) {
+            this.prevButton.style.display = 'none'; // Hide the previous button
+        } else {
+            this.prevButton.style.display = 'block'; // Show the previous button for other steps
+        }
     }
+    
 
     showNextStep() {
         const nextStep = this.steps[this.selectedState - 1];
@@ -264,13 +272,16 @@ class FormStepper {
     //--------------------------------------------------------
 
     handleNextButtonClick() {
-        // if (this.selectedState === 1 && !this.handleStep1()) {
-        //     return;
-        // }
-        // if (!this.checkRequiredFields()) {
-        //     alert('Please fill out all required fields.');
-        //     return;
-        // }
+        if(this.selectedState===1){
+            if(!this.handleStep1()){
+                return;
+            }
+        }
+        
+        if (!this.checkRequiredFields()) {
+            alert('Please fill out all required fields.');
+            return;
+        }
 
         if (this.selectedState === 5) {
             this.saveRegistrationData(); // Save data on the last step

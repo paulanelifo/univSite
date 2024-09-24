@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="reg.css" />
   </head>
   <body>
-    {
     <div class="register-container" id="register-container">
       <div class="registration-header">
         <h2>Registration</h2>
@@ -29,8 +28,13 @@
               <p>By clicking "Next", you agree to the terms and conditions.</p>
               <p>Please read the terms carefully.</p>
               <label>
-                <input type="checkbox" class="agree-checkbox" required /> I
-                agree to the terms and conditions.
+                <input
+                  type="checkbox"
+                  class="agree-checkbox"
+                  id="agree-checkbox"
+                  required
+                />
+                I agree to the terms and conditions.
               </label>
             </div>
           </div>
@@ -390,8 +394,6 @@
       <button class="next-button" id="next-button">Next</button>
       <button class="prev-button" id="prev-button">Previous</button>
     </div>
-    }
-
     <script src="reg.js"></script>
   </body>
 </html>

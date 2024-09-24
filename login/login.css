@@ -14,9 +14,9 @@
     z-index: 1000; /* Ensure the login is on top */
     flex-direction: column;
     box-sizing: border-box;
-}
-
-.login-container hr {
+    
+    
+hr {
     margin: 20px;
 }
 
@@ -130,4 +130,6 @@
 .login-button:active {
     box-shadow: inset 0px 3px 7px #1b5e20; /* Darker green on active */
     transform: translateY(2px);
+}
+
 }

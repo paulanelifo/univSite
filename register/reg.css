@@ -14,7 +14,45 @@ html{
 /* GLOBAL ELEMENT STYLES */
 /* -------------------------------------------------------------------------- */
 
+/* Keyframes for fade-in from left */
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-25%); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+/* Keyframes for fade-out with sliding to the right */
+@keyframes fadeOutRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0); 
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(25%); 
+    }
+}
+.register-container {
+    overflow: hidden;
+    position: absolute; /* Absolute positioning for centering */
+    width: 85vw;
+    height: 80vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Adjusts for element's own width and height */
+    background-color: #fffef1;
+    padding: 0 2vw 0 2vw;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensures the login is on top of other elements */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
 
+    
 /* -------------------------------------------------------------------------- */
 /* NEXT BUTTON */
 /* -------------------------------------------------------------------------- */
@@ -91,23 +129,7 @@ html{
 /* -------------------------------------------------------------------------- */
 
 /* Smaller login container floating styling */
-.register-container {
-    overflow: hidden;
-    position: absolute; /* Absolute positioning for centering */
-    width: 85vw;
-    height: 80vh;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); /* Adjusts for element's own width and height */
-    background-color: #fffef1;
-    padding: 0 2vw 0 2vw;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 1000; /* Ensures the login is on top of other elements */
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    
-}
+
 
 .registration-header h2{
     text-align: center;
@@ -131,29 +153,6 @@ html{
 /* STEP */
 /* -------------------------------------------------------------------------- */
 
-/* Keyframes for fade-in from left */
-@keyframes fadeInLeft {
-    0% {
-        opacity: 0;
-        transform: translateX(-25%); 
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Keyframes for fade-out with sliding to the right */
-@keyframes fadeOutRight {
-    0% {
-        opacity: 1;
-        transform: translateX(0); 
-    }
-    100% {
-        opacity: 0;
-        transform: translateX(25%); 
-    }
-}
 
 /* Step animation */
 .step {
@@ -367,4 +366,6 @@ button.next-button {
 
 button.next-button:hover {
     background-color: #45a049;
+}
+    
 }
