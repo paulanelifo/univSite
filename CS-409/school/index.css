@@ -225,6 +225,26 @@ body {
 }
 
 /* -------------------------------------------------------------------------- */
+/* CLOSE BUTTON */
+/* -------------------------------------------------------------------------- */
+.close-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    background: none;
+    padding: 0 32px;
+    transition: box-shadow 0.15s ease,transform 0.15s ease;
+    position: absolute;
+    color: #000;
+    font-size: 18px;
+    top: 2vh;
+    right: .5vw;
+}
+
+/* -------------------------------------------------------------------------- */
 /* STEP 1 - TERMS AND CONDITIONS */
 /* -------------------------------------------------------------------------- */
 

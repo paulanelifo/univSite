@@ -100,6 +100,7 @@ html{
 
 /* Smaller login container floating styling */
 .register-container {
+    visibility: hidden;
     overflow: hidden;
     position: absolute; /* Absolute positioning for centering */
     width: 85vw;
