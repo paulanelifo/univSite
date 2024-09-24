@@ -1,0 +1,40 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "tilemap.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "City.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 0.0632,
+            "scaleInEditor": 0.13
+        },
+        "tilemap.tmx": {
+            "scale": 0.3,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 943.3333333333334,
+                "y": 523.3333333333334
+            }
+        }
+    },
+    "last.imagePath": "/Users/hornley/Downloads",
+    "map.height": 18,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 60,
+    "map.tileWidth": 60,
+    "map.width": 32,
+    "openFiles": [
+        "City.tsx",
+        "tilemap.tmx"
+    ],
+    "project": "untitled.tiled-project",
+    "recentFiles": [
+        "City.tsx",
+        "tilemap.tmx"
+    ]
+}

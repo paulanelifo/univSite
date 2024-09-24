@@ -8,7 +8,8 @@ const INTERVAL = 1000 / FPS
 const BUILDING_ID = {
     REGISTRATION: 1,
     ABOUT: 2,
-    VISION_MISSION: 3,
+    PROGRAM_OFFERS: 3,
+    ADMISSION: 4
 }
 
 const form = document.getElementById("register-container")
@@ -28,7 +29,6 @@ class Building {
         ctx.fillStyle = this.fillStyle
         ctx.strokeStyle = '#000'
         ctx.rect(this.x, this.y, this.width, this.height)
-        ctx.fill()
         ctx.stroke()
         ctx.restore()
     }
@@ -42,6 +42,8 @@ let Main = {
         this.canvas.height = window.innerHeight
         this.user_color = '#2596be';
         this.ctx = this.canvas.getContext('2d')
+        this.background_image = new Image()
+        this.background_image.src = '/school/school.png'
         window.addEventListener('mousemove', function(e) {
             mousePosition.x = e.pageX
             mousePosition.y = e.pageY
@@ -56,14 +58,26 @@ let Main = {
             if (key === "e") {
                 if (hovered_building.building_id === BUILDING_ID.REGISTRATION) this.window.location = '/registration/'
                 if (hovered_building.building_id === BUILDING_ID.ABOUT) this.window.location = '/about/'
+                if (hovered_building.building_id === BUILDING_ID.ADMISSION) this.window.location = '/admission/'
+                if (hovered_building.building_id === BUILDING_ID.PROGRAM_OFFERS) this.window.location = '/program_offers/'
             } 
         })
+
+        let ratio = {
+            width: 1920 / this.canvas.width,
+            height: 1080 / this.canvas.height
+        }
+        const building_size = {
+            width: 550,
+            height: 270
+        }
+
         this.buildings = [
-            new Building(0, 0, 200, 200, '#88be22'),
-            new Building(500, 0, 300, 300, '#88be22'),
-            new Building(this.canvas.width/2 - 200, this.canvas.height - 200, 200, 200, '#88be22', BUILDING_ID.ABOUT),
-            
-            new Building(this.canvas.width/2 + 100, this.canvas.height - 200, 200, 200, '#88be22', BUILDING_ID.REGISTRATION),
+            new Building(10 / ratio.width, 10 / ratio.height, building_size.width / ratio.width, building_size.height / ratio.height, '#88be22', BUILDING_ID.ABOUT),
+            new Building(window.innerWidth - 10 * ratio.width - building_size.width / ratio.width, 10 / ratio.height, building_size.width / ratio.width, building_size.height / ratio.height, '#88be22', BUILDING_ID.PROGRAM_OFFERS),
+
+            new Building(10 / ratio.width, window.innerHeight - 10 * ratio.height - building_size.height / ratio.height, building_size.width / ratio.width, building_size.height / ratio.height, '#88be22', BUILDING_ID.ADMISSION),
+            new Building(window.innerWidth - 10 * ratio.width - building_size.width / ratio.width, window.innerHeight - 10 * ratio.height - building_size.height / ratio.height, building_size.width / ratio.width, building_size.height / ratio.height, '#88be22', BUILDING_ID.REGISTRATION),
         ]
         loop()
     },
@@ -118,9 +132,19 @@ function checkIfUserInBuilding() {
 function loop() {
     Main.ctx.clearRect(0, 0, Main.canvas.width, Main.canvas.height)
     requestAnimationFrame(loop)
+    Main.ctx.drawImage(Main.background_image, 0, 0, Main.canvas.width, Main.canvas.height)
     Main.load_buildings()
     checkIfUserInBuilding()
     Main.draw_user()
 }
-
-Main.menu()
+if (navigator.userAgent.match(/Android/i)
+    || navigator.userAgent.match(/webOS/i)
+    || navigator.userAgent.match(/iPhone/i)
+    || navigator.userAgent.match(/iPad/i)
+    || navigator.userAgent.match(/iPod/i)
+    || navigator.userAgent.match(/BlackBerry/i)
+    || navigator.userAgent.match(/Windows Phone/i)) {
+        window.location = '/about'
+    } else {
+        Main.menu()
+    }
