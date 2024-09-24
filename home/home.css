@@ -1,167 +1,265 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto');
 
-body{
-  font-family: 'Roboto', sans-serif;
-}
-* {
+body {
   margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #181818;
 }
-i {
-  margin-right: 10px;
+
+/* ---------------------------------------------- */
+/* BUTTON */
+/* ---------------------------------------------- */
+/* From Uiverse.io by mrhyddenn */ 
+/* Photo by <a href="https://unsplash.com/@madebyvadim?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Vadim Sherbakov</a> on <a href="https://unsplash.com/photos/brown-concrete-palace-under-blue-sky-at-daytime-d6ebY-faOO0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+   */
+.button-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically if needed */
+  height: 100vh; /* Optional: set height to 100% of the viewport */
+  width: 150vw;
+  flex-direction: column;
+  background-image: url(home-univ.jpg);
+  background-size: cover; /* Cover the entire viewport */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent tiling */
+
+  position: relative; /* Add this line */
+  overflow: hidden; /* Optional: Add this line */
 }
-/*----------bootstrap-navbar-css------------*/
-.navbar-logo{
-  padding: 15px;
+
+.button {
+  width: 30vw;
+  position: relative;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background: none;
+  color: #0f1923;
+  cursor: pointer;
+  padding: 8px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  background-color: rgba(15, 25, 35, 0.27); /* Semi-transparent background */
+  border-radius: 0; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); /* Highlight effect */
+  transition: all 0.3s ease;
+}
+
+.button::before,
+.button::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  left: 0;
+  height: calc(50% - 5px);
+  border: 1px solid #7D8082;
+  transition: all .15s ease;
+}
+
+.button::before {
+  top: 0;
+  border-bottom-width: 0;
+}
+
+.button::after {
+  bottom: 0;
+  border-top-width: 0;
+}
+
+.button:active,
+.button:focus {
+  outline: none;
+}
+
+.button:active::before,
+.button:active::after {
+  right: 3px;
+  left: 3px;
+}
+
+.button:active::before {
+  top: 3px;
+}
+
+.button:active::after {
+  bottom: 3px;
+}
+
+.button_lg {
+  position: relative;
+  display: block;
+  padding: 10px 20px;
   color: #fff;
-}
-.navbar-mainbg{
-  background-color: #5161ce;
-  padding: 0px;
-}
-#navbarSupportedContent{
+  background-color: #0f1923;
   overflow: hidden;
+  box-shadow: inset 0px 0px 0px 1px transparent;
+  border-radius: inherit; /* Ensure the radius remains consistent */
+}
+
+.button_lg::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  background-color: #0f1923;
+}
+
+.button_lg::after {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  background-color: #0f1923;
+  transition: all .2s ease;
+}
+
+.button_sl {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: -1px;
+  left: -8px;
+  width: 0;
+  background-color: #ff8c00;
+  transform: skew(-15deg);
+  transition: all .2s ease;
+  border-radius: inherit; /* Match the button's radius */
+}
+
+#login-button .button_sl{
+  background-color: rgb(24, 184, 0);
+}
+
+.button_text {
   position: relative;
 }
-#navbarSupportedContent ul{
-  padding: 0px;
-  margin: 0px;
+
+.button:hover {
+  color: #0f1923;
+  background-color: rgba(255, 255, 255, 0.2); /* Transparent background on hover */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.7); /* Stronger highlight effect */
 }
-#navbarSupportedContent ul li a i{
-  margin-right: 10px;
+
+.button:hover .button_sl {
+  width: calc(100% + 15px);
 }
-#navbarSupportedContent li {
-  list-style-type: none;
-  float: left;
-}
-#navbarSupportedContent ul li a{
-  color: rgba(255,255,255,0.5);
-    text-decoration: none;
-    font-size: 15px;
-    display: block;
-    padding: 20px 20px;
-    transition-duration:0.6s;
-  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    position: relative;
-}
-#navbarSupportedContent>ul>li.active>a{
-  color: #5161ce;
-  background-color: transparent;
-  transition: all 0.7s;
-}
-#navbarSupportedContent a:not(:only-child):after {
-  content: "\f105";
-  position: absolute;
-  right: 20px;
-  top: 10px;
-  font-size: 14px;
-  font-family: "Font Awesome 5 Free";
-  display: inline-block;
-  padding-right: 3px;
-  vertical-align: middle;
-  font-weight: 900;
-  transition: 0.5s;
-}
-#navbarSupportedContent .active>a:not(:only-child):after {
-  transform: rotate(90deg);
-}
-.hori-selector{
-  display:inline-block;
-  position:absolute;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-  transition-duration:0.6s;
-  transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+.button:hover .button_lg::after {
   background-color: #fff;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  margin-top: 10px;
 }
-.hori-selector .right,
-.hori-selector .left{
+
+
+/* ---------------------------------------------- */
+/* NAVBAR */
+/* ---------------------------------------------- */
+
+
+.navbar {
+  background-color: #ed880d;
+  color: white;
+  padding: 10px 0;
+  position: relative; /* To position the pseudo-element */
+  transition: background-color 0.3s;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo {
+  font-size: 24px;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.3s; /* Animation for logo */
+}
+
+.logo:hover {
+  transform: scale(1.1); /* Scale logo on hover */
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li {
+  display: inline;
+  position: relative; /* To position the pseudo-element */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s, transform 0.3s; /* Animation for color and scaling */
+}
+
+.nav-links a:hover {
+  color: #ddd;
+  transform: translateY(-3px); /* Slightly move the link up */
+}
+
+/* Underline effect */
+.nav-links a::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #ddd;
+  transition: width 0.3s; /* Animate the underline */
   position: absolute;
-  width: 25px;
-  height: 25px;
-  background-color: #fff;
-  bottom: 10px;
-}
-.hori-selector .right{
-  right: -25px;
-}
-.hori-selector .left{
-  left: -25px;
-}
-.hori-selector .right:before,
-.hori-selector .left:before{
-  content: '';
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #5161ce;
-}
-.hori-selector .right:before{
-  bottom: 0;
-    right: -25px;
-}
-.hori-selector .left:before{
-  bottom: 0;
-    left: -25px;
+  bottom: -5px; /* Position it below the text */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-
-@media(min-width: 992px){
-  .navbar-expand-custom {
-      -ms-flex-flow: row nowrap;
-      flex-flow: row nowrap;
-      -ms-flex-pack: start;
-      justify-content: flex-start;
-  }
-  .navbar-expand-custom .navbar-nav {
-      -ms-flex-direction: row;
-      flex-direction: row;
-  }
-  .navbar-expand-custom .navbar-toggler {
-      display: none;
-  }
-  .navbar-expand-custom .navbar-collapse {
-      display: -ms-flexbox!important;
-      display: flex!important;
-      -ms-flex-preferred-size: auto;
-      flex-basis: auto;
-  }
+.nav-links a:hover::after {
+  width: 100%; /* Expand underline on hover */
 }
 
+/* ---------------------------------------------- */
+/* POP UP */
+/* ---------------------------------------------- */
 
-@media (max-width: 991px){
-  #navbarSupportedContent ul li a{
-    padding: 12px 30px;
-  }
-  .hori-selector{
-    margin-top: 0px;
-    margin-left: 10px;
-    border-radius: 0;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
-  }
-  .hori-selector .left,
-  .hori-selector .right{
-    right: 10px;
-  }
-  .hori-selector .left{
-    top: -25px;
-    left: auto;
-  }
-  .hori-selector .right{
-    bottom: -25px;
-  }
-  .hori-selector .left:before{
-    left: -25px;
-    top: -25px;
-  }
-  .hori-selector .right:before{
-    bottom: -25px;
-    left: -25px;
-  }
+
+/* Pop-Up Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: none; /* Initially hidden */
+  z-index: 999; /* On top of other elements */
+}
+
+/* Pop-Up Box */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 200px;
+  background-color: white;
+  display: none; /* Initially hidden */
+  z-index: 1000; /* On top of the overlay */
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
