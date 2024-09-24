@@ -1,5 +1,5 @@
 class RegistrationData {
-    constructor(fullName, dob, gender, nationality, civilStatus, phoneNumber, email, permanentAddress, currentAddress, guardianInfo, motherInfo, fatherInfo) {
+    constructor(fullName, dob, gender, nationality, civilStatus, phoneNumber, email, permanentAddress, currentAddress, guardianInfo, motherInfo, fatherInfo, username, password) {
         this.fullName = fullName;
         this.dob = dob;
         this.gender = gender;
@@ -12,8 +12,11 @@ class RegistrationData {
         this.guardianInfo = guardianInfo;
         this.motherInfo = motherInfo;
         this.fatherInfo = fatherInfo;
+        this.username = username;
+        this.password = password;
     }
 }
+
 
 class FormStepper {
     
@@ -192,8 +195,8 @@ class FormStepper {
     }
 
     updateSteps() {
-        this.nextButton.textContent = this.selectedState === 4 ? 'Register' : 'Next';
-        this.nextButton.style.fontWeight = this.selectedState === 4 ? 'bold' : 'normal';
+        this.nextButton.textContent = this.selectedState === 5 ? 'Register' : 'Next';
+        this.nextButton.style.fontWeight = this.selectedState === 5 ? 'bold' : 'normal';
 
         const activeStep = document.querySelector('.step.active');
         if (activeStep) {
@@ -242,7 +245,9 @@ class FormStepper {
             document.getElementById('current-address').value,
             guardianInfo,
             motherInfo,
-            fatherInfo
+            fatherInfo,
+            username,
+            password
         );
 
         // Assuming you have an array to hold registrations
@@ -259,15 +264,15 @@ class FormStepper {
     //--------------------------------------------------------
 
     handleNextButtonClick() {
-        if (this.selectedState === 1 && !this.handleStep1()) {
-            return;
-        }
-        if (!this.checkRequiredFields()) {
-            alert('Please fill out all required fields.');
-            return;
-        }
+        // if (this.selectedState === 1 && !this.handleStep1()) {
+        //     return;
+        // }
+        // if (!this.checkRequiredFields()) {
+        //     alert('Please fill out all required fields.');
+        //     return;
+        // }
 
-        if (this.selectedState === 4) {
+        if (this.selectedState === 5) {
             this.saveRegistrationData(); // Save data on the last step
             return;
         }

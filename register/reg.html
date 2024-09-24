@@ -15,52 +15,24 @@
           <div class="dot"></div>
           <div class="dot"></div>
           <div class="dot"></div>
+          <div class="dot"></div>
         </div>
       </div>
 
       <form>
         <!-- Step 1: Terms and Conditions -->
         <div class="step" id="step1-tnc">
-          <h1>Terms and Conditions</h1>
-          <hr />
           <div class="power-scroll">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-              voluptas dolore quisquam saepe vel expedita at, modi laboriosam
-              cum veniam aliquid maiores, optio ab qui nesciunt nihil illo
-              obcaecati iure accusamus. Velit sint tempore corrupti ratione
-              earum excepturi architecto ab nemo ipsam aperiam quo ex omnis in
-              sunt tempora vitae doloribus, fugit repellendus a veritatis nihil?
-              Accusantium ex reprehenderit est possimus, qui non repudiandae
-              pariatur! Quisquam natus quibusdam voluptatibus molestias nostrum,
-              quasi, a culpa veniam consequuntur, non adipisci harum vitae illo
-              debitis accusamus! Deleniti aliquid debitis eveniet dolorem
-              ducimus adipisci voluptates ipsam deserunt at repellat saepe
-              doloremque, assumenda dignissimos illo neque, sunt ratione ab.
-              Voluptate, quae ad ipsam nulla autem id hic dolorem iste quo
-              maiores aperiam! Odit aperiam quis optio itaque totam, laudantium
-              at voluptatem voluptates libero non amet consequatur laboriosam
-              perspiciatis voluptatibus atque aliquid harum laborum corporis.
-              Laborum, dicta beatae! Maxime, itaque, quod possimus doloremque
-              corrupti exercitationem iusto voluptas minus impedit culpa, ut
-              necessitatibus distinctio. Maxime dolor error culpa vel, itaque
-              cum ea. Itaque facilis iusto quibusdam labore voluptate quaerat ea
-              rerum porro, consequatur, exercitationem facere ipsam tenetur
-              reiciendis at dolores inventore, dolorem in saepe autem optio
-              eligendi accusantium nesciunt. Fuga sed voluptatem minus vel,
-              laborum doloremque explicabo.
-            </p>
+            <div class="form-content">
+              <h1>Terms and Conditions</h1>
+              <p>By clicking "Next", you agree to the terms and conditions.</p>
+              <p>Please read the terms carefully.</p>
+              <label>
+                <input type="checkbox" class="agree-checkbox" required /> I
+                agree to the terms and conditions.
+              </label>
+            </div>
           </div>
-          <label>
-            <input
-              type="checkbox"
-              name="agree"
-              class="agree-checkbox"
-              id="agree-checkbox"
-              required
-            />
-            I agree to the terms and conditions.
-          </label>
         </div>
 
         <!-- Step 2: Personal Information -->
@@ -195,7 +167,7 @@
                   placeholder="e.g., 3.5"
                 />
               </div>
-              <div class="form-group">
+              <div class="form-group" id="intended-majors">
                 <label for="intended-major">Intended Major/Program:</label>
                 <select id="intended-major" name="intended-major1" required>
                   <option value="">Select 1st Preferred</option>
@@ -354,6 +326,58 @@
                   id="father-occupation"
                   name="father-occupation"
                   placeholder="Occupation"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5: Account Information -->
+        <div class="step" id="step5">
+          <div class="power-scroll" id="scroll5">
+            <div class="form-content">
+              <h3>Account Information</h3>
+              <div class="form-group">
+                <label for="username">Username:</label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  required
+                  placeholder="Enter your username"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="Enter your email"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                  placeholder="Enter your password"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input
+                  type="password"
+                  id="confirm-password"
+                  name="confirm-password"
+                  required
+                  placeholder="Confirm your password"
                 />
               </div>
             </div>

@@ -1,47 +1,22 @@
-/* colors */
-:root {
-    /* https://coolors.co/fffffa-0d5c63-44a1a0-78cdd7-247b7b */
-    --color1: #FFFFFA;
-    /* baby powder */
-    --color2: #0D5C63;
-    /* carribean current */
-    --color3: #44A1A0;
-    /* verdigris */
-    --color4: #78CDD7;
-    /* tiffany blue */
-    --color5: #247B7B;
-    /* teal */
-    /* https://coolors.co/436436-d6f599-d2ff28-c84c09-420217 */
-    --colora: #436436;
-    /* hunter green */
-    --colorb: #d6f599;
-    --colorb-hover: #c0db8a;
-    /* Mindaro */
-    --colorc: #d2ff28;
-    /* lime */
-    --colord: #c84c09;
-    --colord-hover: #ca7141;
-    /* syracuse red orange */
-    --colore: #420217;
-    /* chocolate cosmos */
-}
-
-
-/* Smaller login container floating styling */
+/* Smaller login container styling */
 .login-container {
-    position: absolute;
+    overflow: hidden;
+    position: absolute; /* Absolute positioning for centering */
+    width: 60vw;
+    height: 55vh;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: var(--color1); /* Adjusted to 80% opacity */
-    padding: 15px; /* Reduced padding */
+    transform: translate(-50%, -50%); /* Center the container */
+    background-color: #fffef1;
+    padding: 1.5% 3vh 80px; /* Padding: top, left/right, bottom */
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 250px; /* Reduced width */
-    z-index: 1000; /* Ensures the login is on top of other elements */
+    z-index: 1000; /* Ensure the login is on top */
+    flex-direction: column;
+    box-sizing: border-box;
 }
 
-.login-container hr{
+.login-container hr {
     margin: 20px;
 }
 
@@ -71,22 +46,6 @@
     font-size: 14px;
 }
 
-button {
-    width: 100%;
-    padding: 8px; /* Reduced padding */
-    background-color: var(--colorb);
-    color: black;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px; /* Reduced font size */
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: var(--colorb-hover);
-}
-
 .fgotpw {
     display: block;
     margin-bottom: 5px;
@@ -95,23 +54,80 @@ button:hover {
     text-align: center;
 }
 
-.login-button{
-    margin-top: 30px;
-}
-
-.register-container{
+.register-container {
     justify-content: center;
     display: flex;
     align-items: center;
 }
 
-.register-container button{
-    margin-top: 10px;
-    width: 90px;
-    background-color: var(--colord);
-    color: white;
+/* Button styling */
+.le-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    will-change: box-shadow, transform;
+    background: radial-gradient(100% 100% at 100% 0%, #ffc48c 0%, #ff6111 100%);
+    box-shadow: 0px 2px 4px rgba(66, 55, 35, 0.4), 
+                0px 7px 13px -3px rgba(66, 54, 35, 0.3), 
+                inset 0px -3px 0px rgba(111, 107, 58, 0.5);
+    padding: 0 32px;
+    border-radius: 6px;
+    text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    color: #fff;
+    font-size: 14px;
+    height: 5vh;
+    width: 20vw;
+    bottom: 2.5vh;
+    right: 1vw;
 }
 
-.register-container button:hover{
-    background-color: var(--colord-hover);
+.le-button:hover {
+    box-shadow: 0px 4px 8px rgba(66, 55, 35, 0.4), 
+                0px 7px 13px -3px rgb(45, 35, 66 / 30%), 
+                inset 0px -3px 0px #e03c3c;
+    transform: translateY(-2px);
+}
+
+.le-button:active {
+    box-shadow: inset 0px 3px 7px #e03c3c;
+    transform: translateY(2px);
+}
+.login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    will-change: box-shadow, transform;
+    background: radial-gradient(100% 100% at 100% 0%, #91f987 0%, #46b637 100%); /* Green gradient */
+    box-shadow: 0px 2px 4px rgba(66, 55, 35, 0.4), 
+                0px 7px 13px -3px rgba(66, 54, 35, 0.3), 
+                inset 0px -3px 0px rgba(111, 107, 58, 0.5);
+    padding: 0 32px;
+    border-radius: 6px;
+    text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+    transition: box-shadow 0.15s ease, transform 0.15s ease;
+    color: #fff;
+    font-size: 14px;
+    height: 5vh;
+    width: 100%;
+    bottom: 2.5vh;
+    right: 1vw;
+}
+
+.login-button:hover {
+    box-shadow: 0px 4px 8px rgba(66, 55, 35, 0.4), 
+                0px 7px 13px -3px rgb(45, 35, 66 / 30%), 
+                inset 0px -3px 0px #1b5e20; /* Darker green on hover */
+    transform: translateY(-2px);
+}
+
+.login-button:active {
+    box-shadow: inset 0px 3px 7px #1b5e20; /* Darker green on active */
+    transform: translateY(2px);
 }
