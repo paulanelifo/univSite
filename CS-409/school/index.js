@@ -9,7 +9,8 @@ const BUILDING_ID = {
     REGISTRATION: 1,
     ABOUT: 2,
     PROGRAM_OFFERS: 3,
-    ADMISSION: 4
+    ADMISSION: 4,
+    HOME: 5
 }
 
 const form = document.getElementById("register-container")
@@ -44,6 +45,8 @@ let Main = {
         this.ctx = this.canvas.getContext('2d')
         this.background_image = new Image()
         this.background_image.src = '/school/school.png'
+        this.founder_image = new Image()
+        this.founder_image.src = '/school/founder.png'
         window.addEventListener('mousemove', function(e) {
             mousePosition.x = e.pageX
             mousePosition.y = e.pageY
@@ -51,6 +54,13 @@ let Main = {
         window.addEventListener('ontouchmove', function(e) {
             mousePosition.x = e.pageX
             mousePosition.y = e.pageY
+        })
+        window.addEventListener('mousedown', function(e) {
+            if (hovered_building.building_id === BUILDING_ID.REGISTRATION) this.window.location = '/registration/'
+            if (hovered_building.building_id === BUILDING_ID.ABOUT) this.window.location = '/about/'
+            if (hovered_building.building_id === BUILDING_ID.ADMISSION) this.window.location = '/admission/'
+            if (hovered_building.building_id === BUILDING_ID.PROGRAM_OFFERS) this.window.location = '/program_offers/'
+            if (hovered_building.building_id === BUILDING_ID.HOME) this.window.location = '/'
         })
         window.addEventListener('keydown', function(e) {
             let key = (e.key.length > 1) ? e.key : e.key.toLowerCase();
@@ -60,6 +70,7 @@ let Main = {
                 if (hovered_building.building_id === BUILDING_ID.ABOUT) this.window.location = '/about/'
                 if (hovered_building.building_id === BUILDING_ID.ADMISSION) this.window.location = '/admission/'
                 if (hovered_building.building_id === BUILDING_ID.PROGRAM_OFFERS) this.window.location = '/program_offers/'
+                if (hovered_building.building_id === BUILDING_ID.HOME) this.window.location = '/'
             } 
         })
 
@@ -76,6 +87,8 @@ let Main = {
             new Building(10 / ratio.width, 10 / ratio.height, building_size.width / ratio.width, building_size.height / ratio.height, '#88be22', BUILDING_ID.ABOUT),
             new Building(window.innerWidth - 10 * ratio.width - building_size.width / ratio.width, 10 / ratio.height, building_size.width / ratio.width, building_size.height / ratio.height, '#88be22', BUILDING_ID.PROGRAM_OFFERS),
 
+            new Building(window.innerWidth / 2 - (building_size.width - 150) / ratio.width / 2 , window.innerHeight + 10 * ratio.height - building_size.height / ratio.height, (building_size.width - 150) / ratio.width, building_size.height / ratio.height - 15 / ratio.height, '#88be22', BUILDING_ID.HOME),
+
             new Building(10 / ratio.width, window.innerHeight - 10 * ratio.height - building_size.height / ratio.height, building_size.width / ratio.width, building_size.height / ratio.height, '#88be22', BUILDING_ID.ADMISSION),
             new Building(window.innerWidth - 10 * ratio.width - building_size.width / ratio.width, window.innerHeight - 10 * ratio.height - building_size.height / ratio.height, building_size.width / ratio.width, building_size.height / ratio.height, '#88be22', BUILDING_ID.REGISTRATION),
         ]
@@ -83,24 +96,18 @@ let Main = {
     },
     draw_user: function() {
         this.ctx.save()
-        this.ctx.fillStyle = Main.user_color
-        const width = 50
-        const height = 50
-        this.ctx.fillRect(mousePosition.x - width / 2, mousePosition.y - height / 2, width, height)
+        const width = 100
+        const height = 100
+        this.ctx.drawImage(this.founder_image, mousePosition.x - width / 2, mousePosition.y - height / 2, width, height)
         this.ctx.restore()
-    },
-    load_buildings: function() {
-        for (let building of this.buildings) {
-            building.draw(this.ctx)
-        }
     }
 }
 
 function checkIfUserInBuilding() {
     const ux = mousePosition.x
     const uy = mousePosition.y
-    const width = 50;
-    const height = 50;
+    const width = 100;
+    const height = 100;
     const tooltip = document.getElementById('tooltip')
     tooltip.style.width = `${width}px`
 
@@ -113,7 +120,7 @@ function checkIfUserInBuilding() {
         ) {
             tooltip.style.opacity = 1
             tooltip.style.visibility = 'visible'
-            tooltip.style.top = `${mousePosition.y - 60}px`
+            tooltip.style.top = `${mousePosition.y - height}px`
             tooltip.style.left = `${mousePosition.x - width / 2}px`
             Main.user_color = '#000000'
             hovered_building = building
@@ -133,7 +140,6 @@ function loop() {
     Main.ctx.clearRect(0, 0, Main.canvas.width, Main.canvas.height)
     requestAnimationFrame(loop)
     Main.ctx.drawImage(Main.background_image, 0, 0, Main.canvas.width, Main.canvas.height)
-    Main.load_buildings()
     checkIfUserInBuilding()
     Main.draw_user()
 }
