@@ -2,6 +2,10 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
+  scroll-behavior: smooth;
+}
+a{
+  scroll-behavior: smooth;
 }
 
 /* ---------------------------------------------- */
@@ -23,6 +27,7 @@ body {
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent tiling */
   mask-image: linear-gradient(to bottom, black 85%, transparent 100%);
+  z-index: 2;
 
   position: relative; /* Add this line */
   overflow: hidden; /* Optional: Add this line */
@@ -106,7 +111,6 @@ body {
     transform: rotateX(30deg) rotateZ(0);
   }
 }
-
 
 .button::before,
 .button::after {
@@ -226,10 +230,18 @@ body {
 
 .navbar {
   background-color: #ed880d;
-  color: white;
+  color: white; 
   padding: 1% 0;
-  position: relative; /* To position the pseudo-element */
-  transition: background-color 0.3s;
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10000;
+  transition: top 0.3s;
+
+  body{
+    padding-top: 60px;
+  }
 }
 
 .container {
@@ -801,5 +813,93 @@ button.next-button {
 button.next-button:hover {
   background-color: #45a049;
 }
+  
+}
+
+/* ---------------------------------------------- */
+/* Courses */
+/* ---------------------------------------------- */
+
+/* Photo by <a href="https://unsplash.com/@nate_dumlao?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Nathan Dumlao</a> on <a href="https://unsplash.com/photos/vacant-brown-wooden-chair-at-stadium-xPHmmVKS8lM?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+   */
+
+.courses-container {
+  background-image: url("courses-chairs.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  top: -20vh;
+  z-index: 1;
+  display: block;
+  height: 100%;
+  padding: 13em 1em 1em 1em;
+  margin-bottom: -21vh;
+
+  .overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.36);
+    z-index: -1;
+  }
+  h2{
+    position: relative;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 200%;
+  }
+  .program-type{
+    color: white;
+  }
+
+}
+.higher-program-container{
+    display: flex;
+    flex-wrap: wrap;
+    /* background-color: pink; */
+    width: 100%;
+    justify-content: center;
+    .what-program-container {
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 25px;
+      height: 20vh;
+      width: 25vw;
+      padding: 1em;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      display: flex; 
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center; 
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Single transition declaration */
+      margin: .3em;
+      font-size: 1.5vh;
+
+      h3 {
+          margin: 0; /* Remove default margin */
+      }
+
+      &:hover {
+          background-color: white;
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Shadow effect */
+          transform: scale(1.05); /* Scale up for hover effect */
+      }
+    }
+    #BEST-COURSE {
+      &:hover{
+        background-color: rgb(226, 226, 0);
+          h3{
+            color: rgb(255, 255, 255);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.70);
+          }   
+          p{
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.70);
+          }
+  }
+  }
+  
   
 }

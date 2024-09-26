@@ -1,0 +1,37 @@
+html {
+    background-color: rgb(255, 0, 0);
+}
+
+.higher-program-container{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: pink;
+    .what-program-container {
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 25px;
+        height: 35vh;
+        width: 25vw;
+        padding: 1em; /* Adjusted padding */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        display: flex; /* Changed to flex */
+        flex-direction: column; /* Stack items vertically */
+        justify-content: center; /* Center items vertically */
+        align-items: center; /* Center items horizontally */
+        text-align: center; /* Center text inside elements */
+        transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; /* Single transition declaration */
+        margin: 1em;
+        font-size: 2vw;
+    
+        h3 {
+            margin: 0; /* Remove default margin */
+        }
+    
+        &:hover {
+            background-color: white;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            transform: scale(1.05); /* Scale up for hover effect */
+            /* Removed unnecessary display, width, and position properties */
+        }
+        
+    }
+}

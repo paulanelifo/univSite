@@ -9,16 +9,16 @@
   <body>
     <nav class="navbar">
       <div class="container">
-        <a href="#" class="logo">MyWebsite</a>
+        <a href="#button-container-main" class="logo">MyWebsite</a>
         <ul class="nav-links">
-          <li><a href="#home">Log In</a></li>
-          <li><a href="#about">Programs Offered</a></li>
+          <li><a href="#button-container-main">Home</a></li>
+          <li><a href="#programs-offered">Programs Offered</a></li>
           <li><a href="#services">About</a></li>
         </ul>
       </div>
     </nav>
 
-    <div class="button-container">
+    <div class="button-container" id="button-container-main">
       <button class="button" id="login-button">
         <span class="button_lg">
           <span class="button_sl"></span>
@@ -63,6 +63,7 @@
         <button class="le-button">Register</button>
       </div>
     </div>
+
     <div class="register-container" id="register-container">
       <div class="registration-header">
         <h2>Registration</h2>
@@ -449,7 +450,102 @@
       <button class="prev-button" id="prev-button">Previous</button>
     </div>
 
-    <div>hi</div>
+    <div class="courses-container">
+      <div class="overlay"></div>
+      <h2 id="programs-offered">Programs Offered</h2>
+      <h3 class="program-type">Undergraduate Programs</h3>
+      <hr />
+      <div class="higher-program-container">
+        <!-- it -->
+        <div class="what-program-container">
+          <h3>Bachelor of Science in Information Technology</h3>
+          <p>
+            Focuses on systems administration, network security, and database
+            management, preparing students for a career in IT.
+          </p>
+        </div>
+        <!-- cs -->
+        <div class="what-program-container" id="BEST-COURSE">
+          <h3>Bachelor of Science in Computer Science</h3>
+          <p>
+            Emphasizes programming, algorithms, and software development,
+            providing a solid foundation for various tech careers.
+          </p>
+        </div>
+        <!-- cybersec -->
+        <div class="what-program-container">
+          <h3>Bachelor of Science in Cybersecurity</h3>
+          <p>
+            Dedicated to protecting systems and networks, this program covers
+            ethical hacking, risk management, and security protocols.
+          </p>
+        </div>
+        <!-- datasci -->
+        <div class="what-program-container">
+          <h3>Bachelor of Science in Data Science</h3>
+          <p>
+            Combines statistics, machine learning, and data visualization to
+            prepare students for analyzing complex data sets.
+          </p>
+        </div>
+        <!-- softeng -->
+        <div class="what-program-container">
+          <h3>Bachelor of Science in Software Engineering</h3>
+          <p>
+            Focuses on advanced software development methodologies and project
+            management, preparing students for leadership roles in technology.
+          </p>
+        </div>
+        <!-- cloudcomp -->
+        <div class="what-program-container">
+          <h3>Bachelor of Science in Cloud Computing</h3>
+          <p>
+            FPrepares students to design, implement, and manage cloud-based
+            solutions, focusing on emerging technologies and services.
+          </p>
+        </div>
+      </div>
+      <h3 class="program-type">Graduate Programs</h3>
+      <hr />
+      <div class="higher-program-container">
+        <!-- datasci -->
+        <div class="what-program-container">
+          <h3>Master of Science in Data Science</h3>
+          <p>
+            Provides advanced knowledge in data analysis, machine learning, and
+            data-driven decision-making for a competitive edge in the industry.
+          </p>
+        </div>
+        <!-- is -->
+        <div class="what-program-container">
+          <h3>Master of Science in Information Systems</h3>
+          <p>
+            Explores the integration of technology and business processes,
+            focusing on system design, implementation, and management.
+          </p>
+        </div>
+        <!-- cybsec -->
+        <div class="what-program-container">
+          <h3>Master of Science in Cybersecurity</h3>
+          <p>
+            Advances knowledge of cybersecurity strategies, risk management, and
+            compliance to protect organizational assets.
+          </p>
+        </div>
+        <!-- ai -->
+        <div class="what-program-container">
+          <h3>Master of Science in Artificial Intelligence</h3>
+          <p>
+            Focuses on the development and application of AI technologies,
+            including machine learning, neural networks, and robotics.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <p>hi</p>
+    </div>
 
     <script src="home.js"></script>
   </body>
