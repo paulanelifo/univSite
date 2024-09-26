@@ -1,18 +1,29 @@
+function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' // Adds smooth scrolling effect
+    });
+  }  
+
 document.getElementById('login-button').addEventListener('click', function() {
   document.getElementById('popup-overlay').style.display = 'block';
   document.getElementById('login-container').style.display = 'flex'; // Use flex to maintain centering
+  document.body.style.overflow = 'hidden';
+  scrollToTop();
 });
 
 document.getElementById('popup-overlay').addEventListener('click', function() {
   this.style.display = 'none';
   document.getElementById('login-container').style.display = 'none';
   document.getElementById('register-container').style.display = 'none';
+  document.body.style.overflow = 'auto';
 });
 
 document.getElementById('register-button').addEventListener('click', function() {
   document.getElementById('popup-overlay').style.display = 'block';
   document.getElementById('register-container').style.display = 'flex'; // Use flex to maintain centering
-
+  document.body.style.overflow = 'hidden';
+  scrollToTop();
 });
 
 

@@ -17,7 +17,7 @@ body {
   justify-content: center; /* Center horizontally */
   align-items: center; /* Center vertically if needed */
   height: 100vh; /* Optional: set height to 100% of the viewport */
-  width: 150vw;
+  width: 100%;
   flex-direction: column;
   background-image: url(home-univ.jpg);
   background-size: cover; /* Cover the entire viewport */
@@ -31,6 +31,7 @@ body {
 .button {
   width: 30vw;
   position: relative;
+  left: 25%;
   -moz-appearance: none;
   -webkit-appearance: none;
   appearance: none;
@@ -168,7 +169,7 @@ body {
 .navbar {
   background-color: #ed880d;
   color: white;
-  padding: 10px 0;
+  padding: 1% 0;
   position: relative; /* To position the pseudo-element */
   transition: background-color 0.3s;
 }
@@ -177,9 +178,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  font-size: 80%;
 }
 
 .logo {
@@ -747,18 +748,22 @@ button.next-button:hover {
 
 /* From Uiverse.io by mobinkakei */ 
 .game-button {
-  --color1: #1a8516;
-  --color2: #236b19;
+  left: 25%;
+  position: relative;
+  --color1: #cd9921;
+  --color2: #af732a;
   perspective: 1000px;
-  padding: 1em 1em;
+  padding: 0.75em;
+  width: 28vw;
   background: linear-gradient(var(--color1), var(--color2));
   border: none;
   outline: none;
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 4px;
+  letter-spacing: 1px;
   color: #fff;
-  text-shadow: 0 10px 10px #000;
+  text-shadow: 0 5px 10px #000;
   cursor: pointer;
   transform: rotateX(70deg) rotateZ(30deg);
   transform-style: preserve-3d;
