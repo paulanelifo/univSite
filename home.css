@@ -169,7 +169,7 @@ body {
 .navbar {
   background-color: #ed880d;
   color: white;
-  padding: 10px 0;
+  padding: 1% 0;
   position: relative; /* To position the pseudo-element */
   transition: background-color 0.3s;
 }
@@ -178,9 +178,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
+  font-size: 80%;
 }
 
 .logo {
