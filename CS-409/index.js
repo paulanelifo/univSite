@@ -26,77 +26,91 @@ class Navbar {
     this.lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
   }
 }
-// Instantiate the Navbar class
-const navbar = new Navbar(".navbar"); // Pass your navbar selector
+class PopupManager {
+  constructor() {
+    this.initAnchors();
+    this.initLogin();
+    this.initRegister();
+    this.initLoginRegister();
+    this.initCloseLogin();
+  }
 
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth", // Adds smooth scrolling effect
-  });
-}
-
-document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-  anchor.addEventListener("click", function (e) {
-    e.preventDefault();
-
-    const target = document.querySelector(this.getAttribute("href"));
-    if (target) {
-      target.scrollIntoView({
-        behavior: "smooth",
+  initAnchors() {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = document.querySelector(anchor.getAttribute("href"));
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
       });
-    }
-  });
-});
+    });
+  }
 
-document.getElementById("login-button").addEventListener("click", function () {
-  document.getElementById("popup-overlay").style.display = "block";
-  document.getElementById("login-container").style.display = "flex"; // Use flex to maintain centering
-  document.body.style.overflow = "hidden";
-  scrollToTop();
-});
+  initLogin() {
+    document
+      .getElementById("login-button")
+      .addEventListener("click", () => {
+        document.getElementById("popup-overlay").style.display = "block";
+        document.getElementById("login-container").style.display = "flex";
+        document.body.style.overflow = "hidden";
+        this.scrollToTop();
+      });
 
-document.getElementById("popup-overlay").addEventListener("click", function () {
-  this.style.display = "none";
-  document.getElementById("login-container").style.display = "none";
-  document.getElementById("register-container").style.display = "none";
-  document.body.style.overflow = "auto";
-});
-
-document
-  .getElementById("register-button")
-  .addEventListener("click", function () {
-    document.getElementById("popup-overlay").style.display = "block";
-    document.getElementById("register-container").style.display = "flex"; // Use flex to maintain centering
-    document.body.style.overflow = "hidden";
-    scrollToTop();
-  });
-
-document
-  .getElementById("login-register-button")
-  .addEventListener("click", function () {
-    document.getElementById("login-container").style.display = "none"; // Use flex to maintain centering
-    document.getElementById("popup-overlay").style.display = "block";
-    document.getElementById("register-container").style.display = "flex"; // Use flex to maintain centering
-  });
-
-document
-  .getElementById("login-button-x")
-  .addEventListener("click", function () {
-    const username = document.getElementById("login-username").value;
-    const password = document.getElementById("login-password").value;
-
-    if (localStorage.getItem(username) !== null) {
-      if (password === localStorage.getItem(username)) {
-        document.body.style.overflow = "auto";
+    document
+      .getElementById("popup-overlay")
+      .addEventListener("click", () => {
         document.getElementById("popup-overlay").style.display = "none";
-        document.getElementById("login-container").style.display = "none"; // Use flex to maintain centering
-        document.getElementById("successful-login").style.animation =
-          "fadeOut 1.5s ease";
-      }
-    }
-  });
+        document.getElementById("login-container").style.display = "none";
+        document.getElementById("register-container").style.display = "none";
+        document.body.style.overflow = "auto";
+      });
+  }
 
+  initRegister() {
+    document
+      .getElementById("register-button")
+      .addEventListener("click", () => {
+        document.getElementById("popup-overlay").style.display = "block";
+        document.getElementById("register-container").style.display = "flex";
+        document.body.style.overflow = "hidden";
+        this.scrollToTop();
+      });
+  }
+
+  initLoginRegister() {
+    document
+      .getElementById("login-register-button")
+      .addEventListener("click", () => {
+        document.getElementById("login-container").style.display = "none";
+        document.getElementById("popup-overlay").style.display = "block";
+        document.getElementById("register-container").style.display = "flex";
+      });
+  }
+
+  initCloseLogin() {
+    document
+      .getElementById("login-button-x")
+      .addEventListener("click", () => {
+        const username = document.getElementById("login-username").value;
+        const password = document.getElementById("login-password").value;
+
+        if (localStorage.getItem(username) !== null) {
+          if (password === localStorage.getItem(username)) {
+            document.body.style.overflow = "auto";
+            document.getElementById("popup-overlay").style.display = "none";
+            document.getElementById("login-container").style.display = "none";
+            document.getElementById("successful-login").style.animation =
+              "fadeOut 1.5s ease";
+          }
+        }
+      });
+  }
+
+  scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+}
 class FormStepper {
   constructor() {
     this.selectedState = 1;
@@ -514,5 +528,91 @@ class FormStepper {
     document.body.style.overflow = "auto";
   }
 }
+class Carousel {
+  constructor(carouselSelector, arrowSelector) {
+      this.carousel = document.querySelector(carouselSelector);
+      this.firstImg = this.carousel.querySelectorAll("img")[0];
+      this.arrowIcons = document.querySelectorAll(arrowSelector);
+      this.isDragStart = false;
+      this.isDragging = false;
+      this.prevPageX = 0;
+      this.prevScrollLeft = 0;
+      this.positionDiff = 0;
+
+      this.init();
+  }
+
+  init() {
+      this.arrowIcons.forEach(icon => {
+          icon.addEventListener("click", () => this.arrowClick(icon));
+      });
+
+      this.carousel.addEventListener("mousedown", (e) => this.dragStart(e));
+      this.carousel.addEventListener("touchstart", (e) => this.dragStart(e));
+      document.addEventListener("mousemove", (e) => this.dragging(e));
+      this.carousel.addEventListener("touchmove", (e) => this.dragging(e));
+      document.addEventListener("mouseup", () => this.dragStop());
+      this.carousel.addEventListener("touchend", () => this.dragStop());
+  }
+
+  showHideIcons() {
+      let scrollWidth = this.carousel.scrollWidth - this.carousel.clientWidth;
+      this.arrowIcons[0].style.display = this.carousel.scrollLeft == 0 ? "none" : "block";
+      this.arrowIcons[1].style.display = this.carousel.scrollLeft == scrollWidth ? "none" : "block";
+  }
+
+  arrowClick(icon) {
+      let firstImgWidth = this.firstImg.clientWidth + 14;
+      this.carousel.scrollLeft += icon.id == "left" ? -firstImgWidth : firstImgWidth;
+      setTimeout(() => this.showHideIcons(), 60);
+  }
+
+  autoSlide() {
+      if (this.carousel.scrollLeft - (this.carousel.scrollWidth - this.carousel.clientWidth) > -1 || this.carousel.scrollLeft <= 0) return;
+
+      this.positionDiff = Math.abs(this.positionDiff);
+      let firstImgWidth = this.firstImg.clientWidth + 14;
+      let valDifference = firstImgWidth - this.positionDiff;
+
+      if (this.carousel.scrollLeft > this.prevScrollLeft) {
+          return this.carousel.scrollLeft += this.positionDiff > firstImgWidth / 3 ? valDifference : -this.positionDiff;
+      }
+
+      this.carousel.scrollLeft -= this.positionDiff > firstImgWidth / 3 ? valDifference : -this.positionDiff;
+  }
+
+  dragStart(e) {
+      this.isDragStart = true;
+      this.prevPageX = e.pageX || e.touches[0].pageX;
+      this.prevScrollLeft = this.carousel.scrollLeft;
+  }
+
+  dragging(e) {
+      if (!this.isDragStart) return;
+      e.preventDefault();
+      this.isDragging = true;
+      this.carousel.classList.add("dragging");
+      this.positionDiff = (e.pageX || e.touches[0].pageX) - this.prevPageX;
+      this.carousel.scrollLeft = this.prevScrollLeft - this.positionDiff;
+      this.showHideIcons();
+  }
+
+  dragStop() {
+      this.isDragStart = false;
+      this.carousel.classList.remove("dragging");
+
+      if (!this.isDragging) return;
+      this.isDragging = false;
+      this.autoSlide();
+  }
+}
+
+// instantiations
+
+const navbar = new Navbar(".navbar");
+
+document.addEventListener("DOMContentLoaded", () => {new PopupManager();});
 
 new FormStepper();
+
+const myCarousel = new Carousel(".carousel", ".wrapper i");
