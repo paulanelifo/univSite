@@ -1,5 +1,5 @@
 class RegistrationData {
-    constructor(fullName, dob, gender, nationality, civilStatus, phoneNumber, email, permanentAddress, currentAddress, guardianInfo, motherInfo, fatherInfo) {
+    constructor(fullName, dob, gender, nationality, civilStatus, phoneNumber, email, permanentAddress, currentAddress, guardianInfo, motherInfo, fatherInfo, username, password) {
         this.fullName = fullName;
         this.dob = dob;
         this.gender = gender;
@@ -12,6 +12,8 @@ class RegistrationData {
         this.guardianInfo = guardianInfo;
         this.motherInfo = motherInfo;
         this.fatherInfo = fatherInfo;
+        this.username = username;
+        this.password = password;
     }
 }
 
@@ -63,6 +65,7 @@ class FormStepper {
         }
         return true;
     }
+    
 
     // Step 2: Personal Information
     checkRequiredFields() {
@@ -192,15 +195,23 @@ class FormStepper {
     }
 
     updateSteps() {
-        this.nextButton.textContent = this.selectedState === 4 ? 'Register' : 'Next';
-        this.nextButton.style.fontWeight = this.selectedState === 4 ? 'bold' : 'normal';
-
+        this.nextButton.textContent = this.selectedState === 5 ? 'Register' : 'Next';
+        this.nextButton.style.fontWeight = this.selectedState === 5 ? 'bold' : 'normal';
+    
         const activeStep = document.querySelector('.step.active');
         if (activeStep) {
             activeStep.classList.remove('active');
         }
         this.showNextStep();
+    
+        // Hide the previous button if on the first step
+        if (this.selectedState === 1) {
+            this.prevButton.style.display = 'none'; // Hide the previous button
+        } else {
+            this.prevButton.style.display = 'block'; // Show the previous button for other steps
+        }
     }
+    
 
     showNextStep() {
         const nextStep = this.steps[this.selectedState - 1];
@@ -242,7 +253,9 @@ class FormStepper {
             document.getElementById('current-address').value,
             guardianInfo,
             motherInfo,
-            fatherInfo
+            fatherInfo,
+            username,
+            password
         );
 
         // Assuming you have an array to hold registrations
@@ -259,15 +272,18 @@ class FormStepper {
     //--------------------------------------------------------
 
     handleNextButtonClick() {
-        if (this.selectedState === 1 && !this.handleStep1()) {
-            return;
+        if(this.selectedState===1){
+            if(!this.handleStep1()){
+                return;
+            }
         }
+        
         if (!this.checkRequiredFields()) {
             alert('Please fill out all required fields.');
             return;
         }
 
-        if (this.selectedState === 4) {
+        if (this.selectedState === 5) {
             this.saveRegistrationData(); // Save data on the last step
             return;
         }

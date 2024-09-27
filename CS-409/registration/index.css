@@ -14,10 +14,6 @@ html{
 /* GLOBAL ELEMENT STYLES */
 /* -------------------------------------------------------------------------- */
 
-/* -------------------------------------------------------------------------- */
-/* STEP */
-/* -------------------------------------------------------------------------- */
-
 /* Keyframes for fade-in from left */
 @keyframes fadeInLeft {
     0% {
@@ -29,7 +25,6 @@ html{
         transform: translateX(0);
     }
 }
-
 /* Keyframes for fade-out with sliding to the right */
 @keyframes fadeOutRight {
     0% {
@@ -41,66 +36,7 @@ html{
         transform: translateX(25%); 
     }
 }
-
-/* Step animation */
-.step {
-    display: none;
-    opacity: 0;
-    height: 58vh;
-    margin-top: 3vh;
-    transition: opacity 0.5s ease, transform 0.5s ease;  /* Ensure both opacity and transform transition */
-}
-
-.step.active {
-    display: block;
-    animation: fadeInLeft 0.25s ease forwards; /* Fade-in and slide-in from left */
-}
-
-.step.leaving {
-    animation: fadeOutRight 0.25s ease forwards; /* Fade-out and slide-out to right */
-}
-
-
-  
-/* -------------------------------------------------------------------------- */
-/* SCROLL PANE */
-/* -------------------------------------------------------------------------- */
-
-/* Container for scrollable content */
-.power-scroll {
-    overflow: auto; /* Enables scrolling */
-    border: none;
-    padding-right: 1vw;
-  }  
-
-/* Custom scrollbar styles */
-.power-scroll::-webkit-scrollbar {
-    width: 10px;             /* Width of the scrollbar */
-}
-
-/* Hide the scrollbar track */
-.power-scroll::-webkit-scrollbar-track {
-    background: transparent; /* Hide the scrollbar track */
-}
-
-/* Style the scrollbar thumb */
-.power-scroll::-webkit-scrollbar-thumb {
-    background: #888;        /* Color of the scrollbar thumb */
-    border-radius: 10px;     /* Rounded corners for the scrollbar thumb */
-}
-
-/* Style the scrollbar thumb on hover */
-.power-scroll::-webkit-scrollbar-thumb:hover {
-    background: #555;        /* Darker color on hover */
-}
-
-/* -------------------------------------------------------------------------- */
-/* MAIN REGISTRATION CONTAINER STYLES */
-/* -------------------------------------------------------------------------- */
-
-/* Smaller login container floating styling */
 .register-container {
-    visibility: hidden;
     overflow: hidden;
     position: absolute; /* Absolute positioning for centering */
     width: 85vw;
@@ -109,37 +45,14 @@ html{
     left: 50%;
     transform: translate(-50%, -50%); /* Adjusts for element's own width and height */
     background-color: #fffef1;
-    padding-left: 3vh; 
-    padding-right: 3vh; 
-    padding-bottom: 80px;
-    padding-top: 1.5%;
-    border-radius: 8px;
+    padding: 0 2vw 0 2vw;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1000; /* Ensures the login is on top of other elements */
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+
     
-}
-
-.registration-header h2{
-    text-align: center;
-}
-
-.many-dots {
-    display: flex; /* Use flexbox to align dots horizontally */
-    gap: 5px; /* Space between the dots */
-    justify-content: center;
-    margin-top: -10px;
-}
-
-.dot {
-    width: 7px; /* Width of each dot */
-    height: 7px; /* Height of each dot */
-    background-color: #33333344; /* Color of the dots */
-    border-radius: 50%; /* Makes the dots circular */
-}
-
 /* -------------------------------------------------------------------------- */
 /* NEXT BUTTON */
 /* -------------------------------------------------------------------------- */
@@ -210,30 +123,166 @@ html{
     transform: translateY(2px);
 }
 
+
 /* -------------------------------------------------------------------------- */
-/* STEP 1 - TERMS AND CONDITIONS */
+/* MAIN REGISTRATION CONTAINER STYLES */
 /* -------------------------------------------------------------------------- */
 
-#step1-tnc h1{
-    margin-bottom: -1vh;
+/* Smaller login container floating styling */
+
+
+.registration-header h2{
+    text-align: center;
 }
 
-#step1-tnc .power-scroll {    
-    border: 1px solid black;
-    height: 50vh;
+.many-dots {
+    display: flex; /* Use flexbox to align dots horizontally */
+    gap: 5px; /* Space between the dots */
+    justify-content: center;
+    margin-top: -10px;
 }
 
-/* Optional styles for the paragraph inside the scroll pane */
-#step1-tnc .power-scroll p {
-    margin: 0;
-    padding: 1vw;
-    text-align: justify;
+.dot {
+    width: 7px; /* Width of each dot */
+    height: 7px; /* Height of each dot */
+    background-color: #33333344; /* Color of the dots */
+    border-radius: 50%; /* Makes the dots circular */
 }
 
-.agree-checkbox{
-    margin-top: 1vh;
-    margin-bottom: 0;
+/* -------------------------------------------------------------------------- */
+/* STEP */
+/* -------------------------------------------------------------------------- */
+
+
+/* Step animation */
+.step {
+    /* background-color: rgba(255, 0, 0, 0.504); */
+    display: none;
+    opacity: 0;
+    height: 63.5vh;
+    transition: opacity 0.5s ease, transform 0.5s ease;  
 }
+
+.step.active {
+    display: block;
+    animation: fadeInLeft 0.25s ease forwards; /* Fade-in and slide-in from left */
+}
+
+.step.leaving {
+    animation: fadeOutRight 0.25s ease forwards; /* Fade-out and slide-out to right */
+}
+
+
+  
+/* -------------------------------------------------------------------------- */
+/* SCROLL PANE */
+/* -------------------------------------------------------------------------- */
+
+/* Container for scrollable content */
+.power-scroll {
+    /* background-color: rgba(0, 0, 255, 0.525); */
+    overflow: auto; /* Enables scrolling */
+    border: none;
+  }  
+
+/* Custom scrollbar styles */
+.power-scroll::-webkit-scrollbar {
+    width: 10px;             /* Width of the scrollbar */
+}
+
+/* Hide the scrollbar track */
+.power-scroll::-webkit-scrollbar-track {
+    background: transparent; /* Hide the scrollbar track */
+}
+
+/* Style the scrollbar thumb */
+.power-scroll::-webkit-scrollbar-thumb {
+    background: #888;        /* Color of the scrollbar thumb */
+    border-radius: 10px;     /* Rounded corners for the scrollbar thumb */
+}
+
+/* Style the scrollbar thumb on hover */
+.power-scroll::-webkit-scrollbar-thumb:hover {
+    background: #555;        /* Darker color on hover */
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/* STEP 1 - TERMS AND CONDITIONS STYLES */
+/* -------------------------------------------------------------------------- */
+
+#step1-tnc {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly off-white background */
+    border: 1px solid #ccc; /* Border for the step */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding inside the step */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-height: 63.5vh; /* Maximum height consistent with other steps */
+    overflow: hidden; /* Hide overflow to maintain layout */
+}
+
+/* Inner scrollable content */
+.power-scroll {
+    height: calc(63.5vh - 40px); /* Adjust height for padding */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Inner content style */
+#step1-tnc .form-content {
+    display: flex;
+    flex-direction: column; /* Column layout for content */
+    padding-bottom: 10px; /* Space below the content */
+}
+
+/* Heading styles */
+#step1-tnc h1 {
+    font-size: 1.8rem; /* Larger font for the heading */
+    margin-bottom: 10px; /* Space below the heading */
+    color: #333; /* Dark text color for contrast */
+}
+
+/* Paragraph styles */
+#step1-tnc p {
+    font-size: 1rem; /* Base font size for readability */
+    line-height: 1.6; /* Spacing between lines */
+    margin-bottom: 15px; /* Space below paragraphs */
+    color: #555; /* Medium gray for text */
+}
+
+/* Checkbox label styles */
+#step1-tnc label {
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center the checkbox with text */
+    margin-top: 15px; /* Space above the checkbox label */
+    font-size: 0.9rem; /* Slightly smaller font for label */
+    color: #333; /* Darker text for visibility */
+}
+
+/* Checkbox styles */
+#step1-tnc .agree-checkbox {
+    margin-right: 10px; /* Space between checkbox and label */
+}
+
+/* Scrollbar customization for Step 1 */
+.power-scroll::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.power-scroll::-webkit-scrollbar-track {
+    background: transparent; /* Background for the scrollbar track */
+}
+
+.power-scroll::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners for thumb */
+}
+
+.power-scroll::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Darker color on hover */
+}
+
+
 
 /* -------------------------------------------------------------------------- */
 /* STEP 2 - PERSONAL INFORMATION */
@@ -241,54 +290,66 @@ html{
 
 /* Container for the scroll pane */
 #scroll2 {
-    width: 100%;              /* Adjust width as needed */
-    height: 100%;             /* Adjust height as needed */
-    overflow: auto;          /* Enable scrolling */
-    padding: 15px;           /* Padding inside the pane */
-    box-sizing: border-box;  /* Include padding and border in the element's total width and height */
-}
-
-/* Optional: Adjust padding and text alignment inside the scroll pane */
-#scroll2 p {
-    margin: 0;               /* Remove default margin */
-    line-height: 1.6;        /* Improve readability */
+    width: 100%;   
+    height: 100%;  
+    overflow: auto;
 }
 
 /* Style for the form content within each step */
 .form-content {
+    /* background-color: rgba(255, 255, 0, 0.511); */
     display: flex;
     flex-direction: column;
-    gap: 1rem;
 }
 
 /* Style for each form group */
 .form-group {
+    /* background-color: rgba(255, 0, 183, 0.644); */
     display: flex;
     flex-direction: column;
+    margin-bottom: 3vh;
 }
 
 /* Style for form labels */
 .form-group label {
-    margin-bottom: 0.5rem;
     font-weight: bold;
 }
 
-/* Style for form inputs and selects */
-.form-group input, .form-group select {
-    padding: 0.75rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
+.form-group input,
+.form-group select {
+    border: 2px solid transparent;
+    width: 95%;
+    height: 5vh;
+    outline: none;
+    overflow: hidden;
+    background-color: #ffffff;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+.form-group select{
+    width: 96%;
+}
+/* Styles for disabled inputs and selects */
+.form-group input:disabled,
+.form-group select:disabled {
+    border: 2px solid transparent; /* or use initial or inherit */
+    background-color: #dcdcdc; /* Maintain the background color */
+    cursor: not-allowed; /* Optional: indicate that it's disabled */
+    /* You can add other styles here if needed, or leave it empty to keep defaults */
 }
 
-/* Style for the phone number input */
-.form-group input[type="tel"] {
-    padding: 0.75rem;
+#intended-major{
+    margin-bottom: 0;
+}
+#intended-majors{
+    margin-bottom: 3vh;
 }
 
-/* Style for the date input */
-.form-group input[type="date"] {
-    padding: 0.75rem;
+.form-group input:hover,
+.form-group focus {
+  border: 2px solid #eca84a;
+  box-shadow: 0px 0px 0px 7px rgba(236, 204, 74, 0.2);
+  background-color: white;
 }
 
 /* Style for the submit button */
@@ -305,4 +366,6 @@ button.next-button {
 
 button.next-button:hover {
     background-color: #45a049;
+}
+    
 }

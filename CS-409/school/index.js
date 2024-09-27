@@ -1,6 +1,8 @@
+import { RegistrationData } from '../registration.js'
+
 let mousePosition = {
-    x: window.innerWidth / 2 - 25,
-    y: window.innerHeight / 2 - 25
+    x: 0,
+    y: 0
 }
 let user_move = true
 let hovered_building = null
@@ -30,26 +32,10 @@ class Building {
         ctx.save()
         ctx.fillStyle = this.fillStyle
         ctx.strokeStyle = '#000'
+        ctx.beginPath()
         ctx.rect(this.x, this.y, this.width, this.height)
         ctx.stroke()
         ctx.restore()
-    }
-}
-
-class RegistrationData {
-    constructor(fullName, dob, gender, nationality, civilStatus, phoneNumber, email, permanentAddress, currentAddress, guardianInfo, motherInfo, fatherInfo) {
-        this.fullName = fullName;
-        this.dob = dob;
-        this.gender = gender;
-        this.nationality = nationality;
-        this.civilStatus = civilStatus;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.permanentAddress = permanentAddress;
-        this.currentAddress = currentAddress;
-        this.guardianInfo = guardianInfo;
-        this.motherInfo = motherInfo;
-        this.fatherInfo = fatherInfo;
     }
 }
 
@@ -70,20 +56,25 @@ class FormStepper {
         this.dots = document.querySelectorAll('.dot');
         this.steps = document.querySelectorAll('.step');
         this.nextButton = document.getElementById('next-button');
-        this.prevButton = document.getElementById('prev-button');
         this.closeButton = document.getElementById('close-button');
+        this.prevButton = document.getElementById('prev-button');
         this.checkbox = document.getElementById('agree-checkbox');
+        this.error = document.getElementById("error");
 
         // Bind methods
         this.updateDots = this.updateDots.bind(this);
         this.updateSteps = this.updateSteps.bind(this);
         this.handleNextButtonClick = this.handleNextButtonClick.bind(this);
-        this.handleCloseButtonClick = this.handleCloseButtonClick.bind(this);
         this.handlePrevButtonClick = this.handlePrevButtonClick.bind(this);
-
+        this.handleCloseButtonClick = this.handleCloseButtonClick.bind(this);
+        this.handleErrorAnimationEnd = this.handleErrorAnimationEnd.bind(this);
+        
         // Initialize the stepper
         this.initialize();
         this.registrations = []; // Initialize the array
+        this.user_data = null
+        this.username = null        
+        this.password = null        
     }
 
     initialize() {
@@ -92,18 +83,21 @@ class FormStepper {
         this.updateSteps();
         this.setupFamilyInfo();
         this.nextButton.addEventListener('click', this.handleNextButtonClick);
-        this.closeButton.addEventListener('click', this.handleCloseButtonClick);
         this.prevButton.addEventListener('click', this.handlePrevButtonClick);
+        this.closeButton.addEventListener('click', this.handleCloseButtonClick);
+        this.error.addEventListener('animationend', this.handleErrorAnimationEnd);
     }
 
     // Step 1: Terms and Conditions
     handleStep1() {
         if (!this.checkbox.checked) {
-            alert('Agree first.');
+            document.getElementById("error-title").innerHTML = "Agree to the terms and condition to proceed."
+            this.error.style.animation = 'fadeOut 1.25s ease'
             return false;
         }
         return true;
     }
+    
 
     // Step 2: Personal Information
     checkRequiredFields() {
@@ -112,19 +106,27 @@ class FormStepper {
         let allFilled = true;
     
         inputs.forEach(input => {
-            // Check if the input is for the father and if "N/A" is checked
-            if (input.id === 'father-name' || input.id === 'father-contact') {
-                const fatherNaCheckbox = document.getElementById('father-na-checkbox');
-                if (fatherNaCheckbox.checked) {
-                    return; // Skip validation for father fields if N/A is checked
-                }
+            if (input.id === "email") {
+                 if (!input.value.match(
+                    /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                  )) {
+                    allFilled = false;
+                    document.getElementById("error-title").innerHTML = `Email is invalid!`
+                    this.error.style.animation = 'fadeOut 1.5s ease'
+                    input.classList.add("error");
+                    return
+                  }
             }
-    
+
             if (!input.value.trim()) {
+
                 allFilled = false;
-                input.classList.add('error');
+                document.getElementById("error-title").innerHTML = `${input.name} is empty, fill it out!`
+                this.error.style.animation = 'fadeOut 1.5s ease'
+                input.classList.add("error");
+                return
             } else {
-                input.classList.remove('error');
+                input.classList.remove("error");
             }
         });
     
@@ -147,8 +149,8 @@ class FormStepper {
 
     // Step 4: Family Information
     setupFamilyInfo() {
-        const sameAsGuardianCheckbox = document.getElementById('same-as-guardian');
-        const fatherNaCheckbox = document.getElementById('father-na-checkbox');
+        const sameAsGuardianMotherCheckbox = document.getElementById('same-as-guardian-mother');
+        const sameAsGuardianFatherCheckbox = document.getElementById('same-as-guardian-father');
 
         const guardianNameInput = document.getElementById('guardian-name');
         const guardianContactInput = document.getElementById('guardian-contact');
@@ -166,8 +168,8 @@ class FormStepper {
         const fatherOccupationInput = document.getElementById('father-occupation');
 
         // Sync guardian's information with mother's if checkbox is checked
-        sameAsGuardianCheckbox.addEventListener('change', () => {
-            const isChecked = sameAsGuardianCheckbox.checked;
+        sameAsGuardianMotherCheckbox.addEventListener('change', () => {
+            const isChecked = sameAsGuardianMotherCheckbox.checked;
             if (isChecked) {
                 motherMaidenNameInput.value = guardianNameInput.value;
                 motherContactInput.value = guardianContactInput.value;
@@ -186,43 +188,81 @@ class FormStepper {
             motherOccupationInput.disabled = isChecked;
         });
 
-        // Add event listeners to sync guardian fields to mother fields in real-time
-        guardianNameInput.addEventListener('input', () => {
-            if (sameAsGuardianCheckbox.checked) {
-                motherMaidenNameInput.value = guardianNameInput.value;
-            }
-        });
-        guardianContactInput.addEventListener('input', () => {
-            if (sameAsGuardianCheckbox.checked) {
-                motherContactInput.value = guardianContactInput.value;
-            }
-        });
-        guardianAddressInput.addEventListener('input', () => {
-            if (sameAsGuardianCheckbox.checked) {
-                motherAddressInput.value = guardianAddressInput.value;
-            }
-        });
-        guardianOccupationInput.addEventListener('input', () => {
-            if (sameAsGuardianCheckbox.checked) {
-                motherOccupationInput.value = guardianOccupationInput.value;
-            }
-        });
-
-        // Disable father fields if father is N/A
-        fatherNaCheckbox.addEventListener('change', () => {
-            const isChecked = fatherNaCheckbox.checked;
-            fatherNameInput.disabled = isChecked;
-            fatherContactInput.disabled = isChecked;
-            fatherAddressInput.disabled = isChecked;
-            fatherOccupationInput.disabled = isChecked;
-
+        // Sync guardian's information with father's if checkbox is checked
+        sameAsGuardianFatherCheckbox.addEventListener('change', () => {
+            const isChecked = sameAsGuardianFatherCheckbox.checked;
             if (isChecked) {
+                fatherNameInput.value = guardianNameInput.value;
+                fatherContactInput.value = guardianContactInput.value;
+                fatherAddressInput.value = guardianAddressInput.value;
+                fatherOccupationInput.value = guardianOccupationInput.value;
+            } else {
                 fatherNameInput.value = '';
                 fatherContactInput.value = '';
                 fatherAddressInput.value = '';
                 fatherOccupationInput.value = '';
             }
+
+            fatherNameInput.disabled = isChecked;
+            fatherContactInput.disabled = isChecked;
+            fatherAddressInput.disabled = isChecked;
+            fatherOccupationInput.disabled = isChecked;
         });
+
+        // Add event listeners to sync guardian fields to mother fields in real-time
+        guardianNameInput.addEventListener('input', () => {
+            if (sameAsGuardianMotherCheckbox.checked) {
+                motherMaidenNameInput.value = guardianNameInput.value;
+            }
+            if (sameAsGuardianFatherCheckbox.checked) {
+                fatherNameInput.value = guardianNameInput.value;
+            }
+        });
+        guardianContactInput.addEventListener('input', () => {
+            if (sameAsGuardianMotherCheckbox.checked) {
+                motherContactInput.value = guardianContactInput.value;
+            }
+            if (sameAsGuardianFatherCheckbox.checked) {
+                fatherContactInput.value = guardianContactInput.value;
+            }
+        });
+        guardianAddressInput.addEventListener('input', () => {
+            if (sameAsGuardianMotherCheckbox.checked) {
+                motherAddressInput.value = guardianAddressInput.value;
+            }
+            if (sameAsGuardianFatherCheckbox.checked) {
+                fatherAddressInput.value = guardianAddressInput.value;
+            }
+        });
+        guardianOccupationInput.addEventListener('input', () => {
+            if (sameAsGuardianMotherCheckbox.checked) {
+                motherOccupationInput.value = guardianOccupationInput.value;
+            }
+            if (sameAsGuardianFatherCheckbox.checked) {
+                fatherOccupationInput.value = guardianOccupationInput.value;
+            }
+        });
+    }
+
+    validateAccount() {
+        const username = document.getElementById("username");
+        const password = document.getElementById("password");
+        const cpassword = document.getElementById("confirm-password");
+
+        if (password.value.length < 8) {
+            document.getElementById("error-title").innerHTML = "Password must be at least 8 in length."
+            this.error.style.animation = 'fadeOut 1.5s ease'
+            return false
+        }
+
+        if (password.value != cpassword.value) {
+            document.getElementById("error-title").innerHTML = "Password does not match!\nPlease try again."
+            this.error.style.animation = 'fadeOut 1.5s ease'
+            return false
+        }
+        this.username = username.value
+        this.password = password.value
+        return true
     }
 
     // Navigation
@@ -233,15 +273,23 @@ class FormStepper {
     }
 
     updateSteps() {
-        this.nextButton.textContent = this.selectedState === 4 ? 'Register' : 'Next';
-        this.nextButton.style.fontWeight = this.selectedState === 4 ? 'bold' : 'normal';
-
+        if (this.selectedState !== 6) this.nextButton.textContent = this.selectedState === 5 ? 'Register' : 'Next';
+        this.nextButton.style.fontWeight = this.selectedState === 5 ? 'bold' : 'normal';
+    
         const activeStep = document.querySelector('.step.active');
         if (activeStep) {
             activeStep.classList.remove('active');
         }
         this.showNextStep();
+    
+        // Hide the previous button if on the first step
+        if (this.selectedState === 1) {
+            this.prevButton.style.display = 'none'; // Hide the previous button
+        } else {
+            this.prevButton.style.display = 'block'; // Show the previous button for other steps
+        }
     }
+    
 
     showNextStep() {
         const nextStep = this.steps[this.selectedState - 1];
@@ -271,6 +319,17 @@ class FormStepper {
             occupation: document.getElementById('father-occupation').value,
         };
 
+        const academicInfo = {
+            name: document.getElementById("high-school-name").value,
+            address: document.getElementById("high-school-address").value,
+            gd: document.getElementById("high-school-graduation-date").value,
+            gpa: document.getElementById("gpa-academic-honors").value,
+            firstChoice: document.getElementById("intended-major1").value,
+            secondChoice: document.getElementById("intended-major2").value,
+            thirdChoice: document.getElementById("intended-major3").value,
+            collegeInfo: document.getElementById("previous-college-info").value,
+        };
+
         const newRegistration = new RegistrationData(
             document.getElementById('full-name').value,
             document.getElementById('dob').value,
@@ -283,34 +342,82 @@ class FormStepper {
             document.getElementById('current-address').value,
             guardianInfo,
             motherInfo,
-            fatherInfo
+            fatherInfo,
+            academicInfo,
+            document.getElementById('username').value,
+            document.getElementById('password').value
         );
 
-        // Assuming you have an array to hold registrations
-        this.registrations.push(newRegistration);
-        this.saveToJSONFile();
-    }
-
-    saveToJSONFile() {
-        const data = JSON.stringify(this.registrations, null, 2);
-        // This is a placeholder for saving the JSON file
-        console.log(data); // You would typically send this to your server to save
+        const confirmation = document.getElementById("confirmation")
+        const jsonified = newRegistration.JSONify()
+        for (const [key, value] of Object.entries(jsonified)) {
+            const dataLabel = document.createElement("label")
+            dataLabel.setAttribute("for", key)
+            dataLabel.setAttribute("class", "confirmation-data-label")
+            dataLabel.innerText = key
+            confirmation.appendChild(dataLabel)
+            if (key.includes("Info")) {
+                for (const [info, _value] of Object.entries(jsonified[key])) {
+                    const data = document.createElement("input")
+                    const dataLabel = document.createElement("label")
+                    dataLabel.setAttribute("for", info)
+                    dataLabel.setAttribute("class", "confirmation-data-info-labael")
+                    dataLabel.innerText = info
+                    data.setAttribute("type", "text")
+                    data.setAttribute("class", "confirmation-data")
+                    data.setAttribute("name", info)
+                    data.setAttribute("placeholder", _value)
+                    data.setAttribute("disabled", true)
+                    confirmation.appendChild(dataLabel)
+                    confirmation.appendChild(data)
+                }
+            } else {
+                const data = document.createElement("input")
+                data.setAttribute("type", "text")
+                data.setAttribute("class", "confirmation-data")
+                data.setAttribute("name", key)
+                data.setAttribute("placeholder", value)
+                data.setAttribute("disabled", true)
+                confirmation.appendChild(data)
+            }
+        }
+        this.nextButton.innerText = "Confirm"
+        this.user_data = jsonified
     }
 
     //--------------------------------------------------------
 
+    handleErrorAnimationEnd() {
+        this.error.style.animation = ''
+    }
+
     handleNextButtonClick() {
-        if (this.selectedState === 1 && !this.handleStep1()) {
-            return;
+        if (this.nextButton.innerText === "Confirm") {
+            document.getElementById("error-title").innerHTML = "Account successfully registered."
+            this.error.style.animation = 'fadeOut 1.5s ease'
+            form.style.visibility = 'hidden'
+            user_move = true
+            Main.ongoing_registration = false
+            localStorage.setItem(this.username, this.password)
+            localStorage.setItem(`${this.username}-data`, this.user_data)
+            return
         }
+
+        if(this.selectedState===1){
+            if(!this.handleStep1()){
+                return;
+            }
+        }
+        
         if (!this.checkRequiredFields()) {
-            alert('Please fill out all required fields.');
             return;
         }
 
-        if (this.selectedState === 4) {
-            this.saveRegistrationData(); // Save data on the last step
-            return;
+        if (this.selectedState === 5) {
+            if (!this.validateAccount()) {
+                return;
+            }
+            this.saveRegistrationData();
         }
 
         this.selectedState++;
@@ -329,6 +436,7 @@ class FormStepper {
     handleCloseButtonClick() {
         form.style.visibility = 'hidden'
         user_move = true
+        Main.ongoing_registration = false
     }
 }
 
@@ -338,12 +446,26 @@ let Main = {
     menu: function() {
         this.canvas.width = window.innerWidth
         this.canvas.height = window.innerHeight
+        if (navigator.userAgent.match(/Android/i)
+            || navigator.userAgent.match(/webOS/i)
+            || navigator.userAgent.match(/iPhone/i)
+            || navigator.userAgent.match(/iPad/i)
+            || navigator.userAgent.match(/iPod/i)
+            || navigator.userAgent.match(/BlackBerry/i)
+            || navigator.userAgent.match(/Windows Phone/i)) {
+                this.mobile = true
+                this.canvas.width = window.outerWidth
+                this.canvas.height = window.outerHeight / 1.5
+                mousePosition.x = this.canvas.width / 2 - 100 / (1920 / this.canvas.width)
+                mousePosition.y = this.canvas.height / 2 - 100 / (1080 / this.canvas.height)
+            }
         this.user_color = '#2596be';
         this.ctx = this.canvas.getContext('2d')
         this.background_image = new Image()
         this.background_image.src = '/school/school.png'
         this.founder_image = new Image()
         this.founder_image.src = '/school/founder.png'
+        this.ongoing_registration = false
         window.addEventListener('mousemove', function(e) {
             mousePosition.x = e.pageX
             mousePosition.y = e.pageY
@@ -353,35 +475,17 @@ let Main = {
             mousePosition.y = e.pageY
         })
         window.addEventListener('mousedown', function(e) {
-            if (form.style.visibility === 'visible' || !hovered_building) return
-            if (hovered_building.building_id === BUILDING_ID.REGISTRATION) {
-                // this.window.location = '/registration/'
-                form.style.visibility = 'visible'
-                user_move = false
-            }
-            if (hovered_building.building_id === BUILDING_ID.ABOUT) this.window.location = '/about/'
-            if (hovered_building.building_id === BUILDING_ID.ADMISSION) this.window.location = '/admission/'
-            if (hovered_building.building_id === BUILDING_ID.PROGRAM_OFFERS) this.window.location = '/program_offers/'
-            if (hovered_building.building_id === BUILDING_ID.HOME) this.window.location = '/'
+            open_building()
         })
         window.addEventListener('keydown', function(e) {
             let key = (e.key.length > 1) ? e.key : e.key.toLowerCase();
 
             if (key === "e") {
-                if (form.style.visibility === 'visible' || !hovered_building) return
-                if (hovered_building.building_id === BUILDING_ID.REGISTRATION) {
-                    // this.window.location = '/registration/'
-                    form.style.visibility = 'visible'
-                    user_move = false
-                }
-                if (hovered_building.building_id === BUILDING_ID.ABOUT) this.window.location = '/about/'
-                if (hovered_building.building_id === BUILDING_ID.ADMISSION) this.window.location = '/admission/'
-                if (hovered_building.building_id === BUILDING_ID.PROGRAM_OFFERS) this.window.location = '/program_offers/'
-                if (hovered_building.building_id === BUILDING_ID.HOME) this.window.location = '/'
+                open_building()
             } 
         })
 
-        let ratio = {
+        this.ratio = {
             width: 1920 / this.canvas.width,
             height: 1080 / this.canvas.height
         }
@@ -389,35 +493,50 @@ let Main = {
             width: 550,
             height: 270
         }
-
+        const edgeX = (this.mobile) ? this.canvas.width - building_size.width / this.ratio.width : this.canvas.width - 10 * this.ratio.width - building_size.width / this.ratio.width
         this.buildings = [
-            new Building(10 / ratio.width, 10 / ratio.height, building_size.width / ratio.width, building_size.height / ratio.height, '#88be22', BUILDING_ID.ABOUT),
-            new Building(window.innerWidth - 10 * ratio.width - building_size.width / ratio.width, 10 / ratio.height, building_size.width / ratio.width, building_size.height / ratio.height, '#88be22', BUILDING_ID.PROGRAM_OFFERS),
+            new Building(10 / this.ratio.width, 10 / this.ratio.height, building_size.width / this.ratio.width, building_size.height / this.ratio.height, '#88be22', BUILDING_ID.ABOUT),
+            new Building(edgeX, 10 / this.ratio.height, building_size.width / this.ratio.width, building_size.height / this.ratio.height, '#88be22', BUILDING_ID.PROGRAM_OFFERS),
 
-            new Building(window.innerWidth / 2 - (building_size.width - 150) / ratio.width / 2 , window.innerHeight + 10 * ratio.height - building_size.height / ratio.height, (building_size.width - 150) / ratio.width, building_size.height / ratio.height - 15 / ratio.height, '#88be22', BUILDING_ID.HOME),
+            new Building(this.canvas.width / 2 - (building_size.width - 150) / this.ratio.width / 2 , this.canvas.height + 10 * this.ratio.height - building_size.height / this.ratio.height, (building_size.width - 150) / this.ratio.width, building_size.height / this.ratio.height - 15 / this.ratio.height, '#88be22', BUILDING_ID.HOME),
 
-            new Building(10 / ratio.width, window.innerHeight - 10 * ratio.height - building_size.height / ratio.height, building_size.width / ratio.width, building_size.height / ratio.height, '#88be22', BUILDING_ID.ADMISSION),
-            new Building(window.innerWidth - 10 * ratio.width - building_size.width / ratio.width, window.innerHeight - 10 * ratio.height - building_size.height / ratio.height, building_size.width / ratio.width, building_size.height / ratio.height, '#88be22', BUILDING_ID.REGISTRATION),
+            new Building(10 / this.ratio.width, this.canvas.height - 10 * this.ratio.height - building_size.height / this.ratio.height, building_size.width / this.ratio.width, building_size.height / this.ratio.height, '#88be22', BUILDING_ID.ADMISSION),
+            new Building(edgeX, this.canvas.height - 10 * this.ratio.height - building_size.height / this.ratio.height, building_size.width / this.ratio.width, building_size.height / this.ratio.height, '#88be22', BUILDING_ID.REGISTRATION),
         ]
-        new FormStepper();
+        this.formstepper = new FormStepper();
         loop()
     },
     draw_user: function() {
         if (!user_move) return
         this.ctx.save()
-        const width = 100
-        const height = 100
+        const width = 100 / this.ratio.width
+        const height = 100 / this.ratio.height
+        this.ctx.beginPath()
         this.ctx.drawImage(this.founder_image, mousePosition.x - width / 2, mousePosition.y - height / 2, width, height)
         this.ctx.restore()
     }
+}
+
+function open_building() {
+    if (form.style.visibility === 'visible' || !hovered_building) return
+    if (hovered_building.building_id === BUILDING_ID.REGISTRATION) {
+        // this.window.location = '/registration/'
+        form.style.visibility = 'visible'
+        user_move = false
+        Main.ongoing_registration = true
+    }
+    if (hovered_building.building_id === BUILDING_ID.ABOUT) window.location = '/about/'
+    if (hovered_building.building_id === BUILDING_ID.ADMISSION) window.location = '/admission/'
+    if (hovered_building.building_id === BUILDING_ID.PROGRAM_OFFERS) window.location = '../#programs-offered'
+    if (hovered_building.building_id === BUILDING_ID.HOME) window.location = '/'
 }
 
 function checkIfUserInBuilding() {
     if (!user_move) return
     const ux = mousePosition.x
     const uy = mousePosition.y
-    const width = 100;
-    const height = 100;
+    const width = 100 / Main.ratio.width
+    const height = 100 / Main.ratio.height
     const tooltip = document.getElementById('tooltip')
     tooltip.style.width = `${width}px`
 
@@ -447,23 +566,21 @@ function checkIfUserInBuilding() {
 }
 
 function loop() {
-    Main.ctx.clearRect(0, 0, Main.canvas.width, Main.canvas.height)
-    requestAnimationFrame(loop)
-    Main.ctx.drawImage(Main.background_image, 0, 0, Main.canvas.width, Main.canvas.height)
-    for (let building of Main.buildings) {
-        building.draw(Main.ctx)
-    }
-    checkIfUserInBuilding()
-    Main.draw_user()
-}
-if (navigator.userAgent.match(/Android/i)
-    || navigator.userAgent.match(/webOS/i)
-    || navigator.userAgent.match(/iPhone/i)
-    || navigator.userAgent.match(/iPad/i)
-    || navigator.userAgent.match(/iPod/i)
-    || navigator.userAgent.match(/BlackBerry/i)
-    || navigator.userAgent.match(/Windows Phone/i)) {
-        window.location = '/about'
+    if (!Main.ongoing_registration) {
+        Main.ctx.clearRect(0, 0, Main.canvas.width, Main.canvas.height)
+        requestAnimationFrame(loop)
+        Main.ctx.save()
+        Main.ctx.beginPath()
+        Main.ctx.drawImage(Main.background_image, 0, 0, Main.canvas.width, Main.canvas.height)
+        Main.ctx.restore()
+        for (let building of Main.buildings) {
+            building.draw(Main.ctx)
+        }
+        checkIfUserInBuilding()
+        Main.draw_user()
     } else {
-        Main.menu()
+        requestAnimationFrame(loop)
     }
+}
+
+Main.menu()

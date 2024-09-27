@@ -1,0 +1,423 @@
+/* -------------------------------------------------------------------------- */
+/* CLOSE BUTTON */
+/* -------------------------------------------------------------------------- */
+.close-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    background: none;
+    padding: 0 32px;
+    transition: box-shadow 0.15s ease,transform 0.15s ease;
+    position: absolute;
+    color: #000;
+    font-size: 18px;
+    top: 2vh;
+    right: .5vw;
+}
+
+/* error */
+
+@keyframes fadeOut {
+    0% {
+        opacity: 100;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.error-div {
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.error-div .error-title {
+    width: fit-content;
+    background-color: #ccc;
+    padding: 1rem;
+    color: black;
+    border-radius: 1rem;
+}
+
+/* -------------------------------------------------------------------------- */
+/* GLOBAL ELEMENT STYLES */
+/* -------------------------------------------------------------------------- */
+
+/* Keyframes for fade-in from left */
+@keyframes fadeInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-25%); 
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+/* Keyframes for fade-out with sliding to the right */
+@keyframes fadeOutRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0); 
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(25%); 
+    }
+}
+.register-container {
+    border-radius: 1rem;
+    visibility: hidden;
+    overflow: hidden;
+    position: absolute; /* Absolute positioning for centering */
+    width: 85vw;
+    height: 80vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Adjusts for element's own width and height */
+    background-color: #fffef1;
+    padding: 0 2vw 0 2vw;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Ensures the login is on top of other elements */
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    
+/* -------------------------------------------------------------------------- */
+/* NEXT BUTTON */
+/* -------------------------------------------------------------------------- */
+.next-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    will-change: box-shadow,transform;
+    background: radial-gradient( 100% 100% at 100% 0%, #ffc48c 0%, #ff6111 100% );
+    box-shadow: 0px 2px 4px rgba(66, 55, 35, 0.4), 0px 7px 13px -3px rgba(66, 54, 35, 0.3), inset 0px -3px 0px rgba(111, 107, 58, 0.5);
+    padding: 0 32px;
+    border-radius: 6px;
+    text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+    transition: box-shadow 0.15s ease,transform 0.15s ease;
+    position: absolute;
+    color: #fff;
+    font-size: 14px;
+    bottom: 2.5vh;
+    right: 1vw;
+    height: 5vh;
+    width: 20vw;
+}
+
+.next-button:hover {
+    box-shadow: 0px 4px 8px rgba(66, 55, 35, 0.4), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #e03c3c;
+    transform: translateY(-2px);
+}
+.next-button:active{
+    box-shadow: inset 0px 3px 7px #e03c3c;
+    transform: translateY(2px);
+}
+
+/* -------------------------------------------------------------------------- */
+/* PREVIOUS BUTTON */
+/* -------------------------------------------------------------------------- */
+.prev-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    will-change: box-shadow,transform;
+    background: radial-gradient( 100% 100% at 100% 0%, #ffc48c 0%, #ff6111 100% );
+    box-shadow: 0px 2px 4px rgba(66, 55, 35, 0.4), 0px 7px 13px -3px rgba(66, 54, 35, 0.3), inset 0px -3px 0px rgba(111, 107, 58, 0.5);
+    padding: 0 32px;
+    border-radius: 6px;
+    text-shadow: 0 1px 0 rgb(0 0 0 / 40%);
+    transition: box-shadow 0.15s ease,transform 0.15s ease;
+    position: absolute;
+    color: #fff;
+    font-size: 14px;
+    bottom: 2.5vh;
+    left: 1vw;
+    height: 5vh;
+    width: 20vw;
+}
+
+.prev-button:hover {
+    box-shadow: 0px 4px 8px rgba(66, 55, 35, 0.4), 0px 7px 13px -3px rgb(45 35 66 / 30%), inset 0px -3px 0px #e03c3c;
+    transform: translateY(-2px);
+}
+.prev-button:active{
+    box-shadow: inset 0px 3px 7px #e03c3c;
+    transform: translateY(2px);
+}
+
+
+/* -------------------------------------------------------------------------- */
+/* MAIN REGISTRATION CONTAINER STYLES */
+/* -------------------------------------------------------------------------- */
+
+/* Smaller login container floating styling */
+
+
+.registration-header h2{
+    text-align: center;
+}
+
+.many-dots {
+    display: flex; /* Use flexbox to align dots horizontally */
+    gap: 5px; /* Space between the dots */
+    justify-content: center;
+    margin-top: -10px;
+}
+
+.dot {
+    width: 7px; /* Width of each dot */
+    height: 7px; /* Height of each dot */
+    background-color: #33333344; /* Color of the dots */
+    border-radius: 50%; /* Makes the dots circular */
+}
+
+/* -------------------------------------------------------------------------- */
+/* STEP */
+/* -------------------------------------------------------------------------- */
+
+
+/* Step animation */
+.step {
+    /* background-color: rgba(255, 0, 0, 0.504); */
+    display: none;
+    opacity: 0;
+    height: 63.5vh;
+    transition: opacity 0.5s ease, transform 0.5s ease;  
+}
+
+.step.active {
+    display: block;
+    animation: fadeInLeft 0.25s ease forwards; /* Fade-in and slide-in from left */
+}
+
+.step.leaving {
+    animation: fadeOutRight 0.25s ease forwards; /* Fade-out and slide-out to right */
+}
+
+
+  
+/* -------------------------------------------------------------------------- */
+/* SCROLL PANE */
+/* -------------------------------------------------------------------------- */
+
+/* Container for scrollable content */
+.power-scroll {
+    /* background-color: rgba(0, 0, 255, 0.525); */
+    overflow: auto; /* Enables scrolling */
+    border: none;
+  }  
+
+/* Custom scrollbar styles */
+.power-scroll::-webkit-scrollbar {
+    width: 10px;             /* Width of the scrollbar */
+}
+
+/* Hide the scrollbar track */
+.power-scroll::-webkit-scrollbar-track {
+    background: transparent; /* Hide the scrollbar track */
+}
+
+/* Style the scrollbar thumb */
+.power-scroll::-webkit-scrollbar-thumb {
+    background: #888;        /* Color of the scrollbar thumb */
+    border-radius: 10px;     /* Rounded corners for the scrollbar thumb */
+}
+
+/* Style the scrollbar thumb on hover */
+.power-scroll::-webkit-scrollbar-thumb:hover {
+    background: #555;        /* Darker color on hover */
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/* STEP 1 - TERMS AND CONDITIONS STYLES */
+/* -------------------------------------------------------------------------- */
+
+#step1-tnc {
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly off-white background */
+    border: 1px solid #ccc; /* Border for the step */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding inside the step */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    max-height: 63.5vh; /* Maximum height consistent with other steps */
+    overflow: hidden; /* Hide overflow to maintain layout */
+}
+
+/* Inner scrollable content */
+.power-scroll {
+    height: calc(63.5vh - 40px); /* Adjust height for padding */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Inner content style */
+#step1-tnc .form-content {
+    display: flex;
+    flex-direction: column; /* Column layout for content */
+    padding-bottom: 10px; /* Space below the content */
+}
+
+/* Heading styles */
+#step1-tnc h1 {
+    font-size: 1.8rem; /* Larger font for the heading */
+    margin-bottom: 10px; /* Space below the heading */
+    color: #333; /* Dark text color for contrast */
+}
+
+/* Paragraph styles */
+#step1-tnc p {
+    font-size: 1rem; /* Base font size for readability */
+    line-height: 1.6; /* Spacing between lines */
+    margin-bottom: 15px; /* Space below paragraphs */
+    color: #555; /* Medium gray for text */
+}
+
+/* Checkbox label styles */
+#step1-tnc label {
+    display: flex; /* Flexbox for alignment */
+    align-items: center; /* Center the checkbox with text */
+    margin-top: 15px; /* Space above the checkbox label */
+    font-size: 0.9rem; /* Slightly smaller font for label */
+    color: #333; /* Darker text for visibility */
+}
+
+/* Checkbox styles */
+#step1-tnc .agree-checkbox {
+    margin-right: 10px; /* Space between checkbox and label */
+}
+
+/* Scrollbar customization for Step 1 */
+.power-scroll::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+.power-scroll::-webkit-scrollbar-track {
+    background: transparent; /* Background for the scrollbar track */
+}
+
+.power-scroll::-webkit-scrollbar-thumb {
+    background: #888; /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners for thumb */
+}
+
+.power-scroll::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Darker color on hover */
+}
+
+
+
+/* -------------------------------------------------------------------------- */
+/* STEP 2 - PERSONAL INFORMATION */
+/* -------------------------------------------------------------------------- */
+
+/* Container for the scroll pane */
+#scroll2 {
+    width: 100%;   
+    height: 100%;  
+    overflow: auto;
+}
+
+/* Style for the form content within each step */
+.form-content {
+    /* background-color: rgba(255, 255, 0, 0.511); */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style for each form group */
+.form-group {
+    /* background-color: rgba(255, 0, 183, 0.644); */
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3vh;
+}
+
+/* Style for form labels */
+.form-group label {
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group select {
+    border: 2px solid transparent;
+    width: 95%;
+    height: 5vh;
+    outline: none;
+    overflow: hidden;
+    background-color: #ffffff;
+    border-radius: 10px;
+    transition: all 0.5s;
+}
+.form-group select{
+    width: 96%;
+}
+/* Styles for disabled inputs and selects */
+.form-group input:disabled,
+.form-group select:disabled {
+    border: 2px solid transparent; /* or use initial or inherit */
+    background-color: #dcdcdc; /* Maintain the background color */
+    cursor: not-allowed; /* Optional: indicate that it's disabled */
+    /* You can add other styles here if needed, or leave it empty to keep defaults */
+}
+
+#intended-major{
+    margin-bottom: 0;
+}
+#intended-majors{
+    margin-bottom: 3vh;
+}
+
+.form-group input:hover,
+.form-group focus {
+  border: 2px solid #eca84a;
+  box-shadow: 0px 0px 0px 7px rgba(236, 204, 74, 0.2);
+  background-color: white;
+}
+
+/* Style for the submit button */
+button.next-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+button.next-button:hover {
+    background-color: #45a049;
+}
+    
+}
+
+.confirmation-data:disabled {
+    border: 2px solid transparent; /* or use initial or inherit */
+    background-color: #dcdcdc; /* Maintain the background color */
+    cursor: not-allowed; /* Optional: indicate that it's disabled */
+}
+
+.confirmation-data-info-labael {
+    font-size: 1rem;
+}

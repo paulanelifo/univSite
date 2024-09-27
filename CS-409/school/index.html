@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../registration.css"/>
     <link rel="stylesheet" href="index.css">
     <title>School View</title>
 </head>
@@ -10,367 +11,398 @@
     <canvas class="canvas" id="canvas"></canvas>
 
     <div class="register-container" id="register-container">
-        <div class="registration-header">
-          <h2>Registration</h2>
-          <div class="many-dots">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
+      <div class="error-div" id="error">
+        <h1 class="error-title" id="error-title">
+          Fill out all the  fields!
+        </h1>
+      </div>
+      <div class="registration-header">
+        <h2>Registration</h2>
+        <div class="many-dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+
+        <!-- Step 1: Terms and Conditions -->
+        <div class="step" id="step1-tnc">
+          <div class="power-scroll">
+            <div class="form-content">
+              <h1>Terms and Conditions</h1>
+              <p>By clicking "Next", you agree to the terms and conditions.</p>
+              <p>Please read the terms carefully.</p>
+              <label>
+                <input
+                  type="checkbox"
+                  class="agree-checkbox"
+                  id="agree-checkbox"
+                  
+                />
+                I agree to the terms and conditions.
+              </label>
+            </div>
           </div>
         </div>
-  
-        <form>
-          <!-- Step 1: Terms and Conditions -->
-          <div class="step" id="step1-tnc">
-            <h1>Terms and Conditions</h1>
-            <hr/>
-            <div class="power-scroll">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta
-                voluptas dolore quisquam saepe vel expedita at, modi laboriosam
-                cum veniam aliquid maiores, optio ab qui nesciunt nihil illo
-                obcaecati iure accusamus. Velit sint tempore corrupti ratione
-                earum excepturi architecto ab nemo ipsam aperiam quo ex omnis in
-                sunt tempora vitae doloribus, fugit repellendus a veritatis nihil?
-                Accusantium ex reprehenderit est possimus, qui non repudiandae
-                pariatur! Quisquam natus quibusdam voluptatibus molestias nostrum,
-                quasi, a culpa veniam consequuntur, non adipisci harum vitae illo
-                debitis accusamus! Deleniti aliquid debitis eveniet dolorem
-                ducimus adipisci voluptates ipsam deserunt at repellat saepe
-                doloremque, assumenda dignissimos illo neque, sunt ratione ab.
-                Voluptate, quae ad ipsam nulla autem id hic dolorem iste quo
-                maiores aperiam! Odit aperiam quis optio itaque totam, laudantium
-                at voluptatem voluptates libero non amet consequatur laboriosam
-                perspiciatis voluptatibus atque aliquid harum laborum corporis.
-                Laborum, dicta beatae! Maxime, itaque, quod possimus doloremque
-                corrupti exercitationem iusto voluptas minus impedit culpa, ut
-                necessitatibus distinctio. Maxime dolor error culpa vel, itaque
-                cum ea. Itaque facilis iusto quibusdam labore voluptate quaerat ea
-                rerum porro, consequatur, exercitationem facere ipsam tenetur
-                reiciendis at dolores inventore, dolorem in saepe autem optio
-                eligendi accusantium nesciunt. Fuga sed voluptatem minus vel,
-                laborum doloremque explicabo.
-              </p>
-            </div>
-            <label>
-              <input
-                type="checkbox"
-                name="agree"
-                class="agree-checkbox"
-                id="agree-checkbox"
-                required
-              />
-              I agree to the terms and conditions.
-            </label>
-          </div>
-  
-          <!-- Step 2: Personal Information -->
-          <div class="step" id="step2-pi">
-            <div class="power-scroll" id="scroll2">
-              <div class="form-content">
-                <div class="form-group">
-                  <label for="full-name">Full Name:</label>
-                  <input
-                    type="text"
-                    id="full-name"
-                    name="full-name"
-                    placeholder="Last Name, First Name M.I."
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="dob">Date of Birth:</label>
-                  <input type="date" id="dob" name="dob" required />
-                </div>
-                <div class="form-group">
-                  <label for="gender">Gender:</label>
-                  <select id="gender" name="gender" required>
-                    <option value="">Select</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="nationality">Nationality:</label>
-                  <input
-                    type="text"
-                    id="nationality"
-                    name="nationality"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="civil-status">Civil Status:</label>
-                  <select id="civil-status" name="civil-status" required>
-                    <option value="">Select</option>
-                    <option value="single">Single</option>
-                    <option value="married">Married</option>
-                    <!-- Add other options as needed -->
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="phone-number">Phone Number:</label>
-                  <input
-                    type="tel"
-                    id="phone-number"
-                    name="phone-number"
-                    placeholder="e.g., +1234567890"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="email">Email Address:</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="e.g., example@example.com"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="permanent-address">Permanent Address:</label>
-                  <input
-                    type="text"
-                    id="permanent-address"
-                    name="permanent-address"
-                    placeholder="Full address including city, state, and zip code"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="current-address">Current/Temporary Address:</label>
-                  <input
-                    type="text"
-                    id="current-address"
-                    name="current-address"
-                    placeholder="If different from the permanent address"
-                  />
-                </div>
+
+        <!-- Step 2: Personal Information -->
+        <div class="step" id="step2-pi">
+          <div class="power-scroll" id="scroll2">
+            <div class="form-content">
+              <div class="form-group">
+                <label for="Full Name">Full Name *</label>
+                <input
+                  type="text"
+                  id="full-name"
+                  name="Full Name"
+                  placeholder="Last Name, First Name M.I."
+                  
+                />
+              </div>
+              <div class="form-group">
+                <label for="Date of Birth">Date of Birth *</label>
+                <input type="date" id="dob" name="Date of Birth"  />
+              </div>
+              <div class="form-group">
+                <label for="Gender">Gender *</label>
+                <select id="gender" name="Gender" >
+                  <option value="">Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="nationality">Nationality *</label>
+                <input
+                  type="text"
+                  id="nationality"
+                  name="nationality"
+                  
+                />
+              </div>
+              <div class="form-group">
+                <label for="Civil Status">Civil Status *</label>
+                <select id="civil-status" name="Civil Status" >
+                  <option value="">Select</option>
+                  <option value="single">Single</option>
+                  <option value="married">Married</option>
+                  <!-- Add other options as needed -->
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="Phone Number">Phone Number *</label>
+                <input
+                  type="tel"
+                  id="phone-number"
+                  name="Phone Number"
+                  placeholder="e.g., +1234567890"
+                  
+                />
+              </div>
+              <div class="form-group">
+                <label for="Email">Email Address *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="Email"
+                  placeholder="e.g., example@example.com"
+                  
+                />
+              </div>
+              <div class="form-group">
+                <label for="Permanent Address">Permanent Address *</label>
+                <input
+                  type="text"
+                  id="permanent-address"
+                  name="Permanent Address"
+                  placeholder="Full address including city, state, and zip code"
+                  
+                />
+              </div>
+              <div class="form-group">
+                <label for="Current Address">Current/Temporary Address (optional)</label>
+                <input
+                  type="text"
+                  id="current-address"
+                  name="Current Address"
+                  placeholder="If different from the permanent address"
+                />
               </div>
             </div>
           </div>
-  
-          <!-- Step 3: Academic Information -->
-          <div class="step" id="step3-academic">
-            <div class="power-scroll" id="scroll2">
-              <div class="form-content">
-                <div class="form-group">
-                  <label for="high-school-name">High School Name:</label>
-                  <input
-                    type="text"
-                    id="high-school-name"
-                    name="high-school-name"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="high-school-address">High School Address:</label>
-                  <input
-                    type="text"
-                    id="high-school-address"
-                    name="high-school-address"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="high-school-graduation-date"
-                    >High School Graduation Date:</label
-                  >
-                  <input
-                    type="date"
-                    id="high-school-graduation-date"
-                    name="high-school-graduation-date"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="gpa-academic-honors"
-                    >GPA/Academic Honors (optional):</label
-                  >
-                  <input
-                    type="text"
-                    id="gpa-academic-honors"
-                    name="gpa-academic-honors"
-                    placeholder="e.g., 3.5"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="intended-major">Intended Major/Program:</label>
-                  <select id="intended-major" name="intended-major1" required>
-                    <option value="">Select 1st Preferred</option>
-                  </select>
-                  <select id="intended-major" name="intended-major2" required>
-                    <option value="">Select 2nd Preferred</option>
-                  </select>
-                  <select id="intended-major" name="intended-major3" required>
-                    <option value="">Select 3rd Preferred</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="previous-college-info"
-                    >Previous College Information:</label
-                  >
-                  <input
-                    type="text"
-                    id="previous-college-info"
-                    name="previous-college-info"
-                    placeholder="Type n/a if none"
-                  />
-                </div>
+        </div>
+
+        <!-- Step 3: Academic Information -->
+        <div class="step" id="step3-academic">
+          <div class="power-scroll" id="scroll2">
+            <div class="form-content">
+              <div class="form-group">
+                <label for="High School Name">High School Name *</label>
+                <input
+                  type="text"
+                  id="high-school-name"
+                  name="High School Name"
+                  
+                />
+              </div>
+              <div class="form-group">
+                <label for="High School Address">High School Address *</label>
+                <input
+                  type="text"
+                  id="high-school-address"
+                  name="High School Address"
+                  
+                />
+              </div>
+              <div class="form-group">
+                <label for="High School Graduation Date"
+                  >High School Graduation Date *</label
+                >
+                <input
+                  type="date"
+                  id="high-school-graduation-date"
+                  name="High School Graduation Date"
+                  
+                />
+              </div>
+              <div class="form-group">
+                <label for="gpa-academic-honors"
+                  >GPA/Academic Honors (optional):</label
+                >
+                <input
+                  type="text"
+                  id="gpa-academic-honors"
+                  name="gpa-academic-honors"
+                  placeholder="e.g., 3.5"
+                />
+              </div>
+              <div class="form-group" id="intended-majors">
+                <label for="intended-major">Intended Major/Program:</label>
+                <select id="intended-major1" name="intended-major1" >
+                  <option value="">Select 1st Preferred *</option>
+                </select>
+                <select id="intended-major2" name="intended-major2" >
+                  <option value="">Select 2nd Preferred *</option>
+                </select>
+                <select id="intended-major3" name="intended-major3">
+                  <option value="">Select 3rd Preferred (optional)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="previous-college-info"
+                  >Previous College Information (optional)</label
+                >
+                <input
+                  type="text"
+                  id="previous-college-info"
+                  name="previous-college-info"
+                  placeholder="Leave empty if none"
+                />
               </div>
             </div>
           </div>
-  
-          <!-- Step 4: Family Information -->
-          <div class="step" id="step4-family">
-            <div class="power-scroll" id="scroll2">
-              <h2>Family Information</h2>
-  
-              <!-- Guardian Information -->
-              <div class="form-content">
-                <h3>Guardian's Information</h3>
-                <div class="form-group">
-                  <label for="guardian-name">Guardian's Name:</label>
-                  <input
-                    type="text"
-                    id="guardian-name"
-                    name="guardian-name"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="guardian-contact">Guardian's Contact Info:</label>
-                  <input
-                    type="text"
-                    id="guardian-contact"
-                    name="guardian-contact"
-                    required
-                    placeholder="Phone or Email"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="parent-address">Parent/Guardian Address:</label>
-                  <input
-                    type="text"
-                    id="parent-address"
-                    name="parent-address"
-                    placeholder="If different from student’s address"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="parent-occupation"
-                    >Parent/Guardian Occupation:</label
-                  >
-                  <input
-                    type="text"
-                    id="parent-occupation"
-                    name="parent-occupation"
-                    placeholder="Occupation"
-                  />
-                </div>
+        </div>
+
+        <!-- Step 4: Family Information -->
+        <div class="step" id="step4-family">
+          <div class="power-scroll" id="scroll2">
+            <h2>Family Information</h2>
+
+            <!-- Guardian Information -->
+            <div class="form-content">
+              <h3>Guardian's Information</h3>
+              <div class="form-group">
+                <label for="guardian-name">Guardian's Name:</label>
+                <input
+                  type="text"
+                  id="guardian-name"
+                  name="guardian-name"
+                  
+                />
               </div>
-  
-              <!-- Mother's Information -->
-              <div class="form-content">
-                <h3>Mother's Information</h3>
-                <label>
-                  <input type="checkbox" id="same-as-guardian" />
-                  Mother's information is the same as Guardian's
-                </label>
-                <div class="form-group">
-                  <label for="mother-maiden-name">Mother's Maiden Name:</label>
-                  <input
-                    type="text"
-                    id="mother-maiden-name"
-                    name="mother-maiden-name"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="mother-contact">Mother's Contact Info:</label>
-                  <input
-                    type="text"
-                    id="mother-contact"
-                    name="mother-contact"
-                    required
-                    placeholder="Phone or Email"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="mother-address">Mother's Address:</label>
-                  <input
-                    type="text"
-                    id="mother-address"
-                    name="mother-address"
-                    placeholder="If different from student’s address"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="mother-occupation">Mother's Occupation:</label>
-                  <input
-                    type="text"
-                    id="mother-occupation"
-                    name="mother-occupation"
-                    placeholder="Occupation"
-                  />
-                </div>
+              <div class="form-group">
+                <label for="guardian-contact">Guardian's Contact Info:</label>
+                <input
+                  type="text"
+                  id="guardian-contact"
+                  name="guardian-contact"
+                  
+                  placeholder="Phone or Email"
+                />
               </div>
-  
-              <!-- Father's Information -->
-              <div class="form-content">
-                <h3>Father's Information</h3>
-                <label>
-                  <input type="checkbox" id="father-na-checkbox" />
-                  N/A
-                </label>
-                <div class="form-group">
-                  <label for="father-name">Father's Name:</label>
-                  <input type="text" id="father-name" name="father-name" />
-                </div>
-                <div class="form-group">
-                  <label for="father-contact">Father's Contact Info:</label>
-                  <input
-                    type="text"
-                    id="father-contact"
-                    name="father-contact"
-                    required
-                    placeholder="Phone or Email"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="father-address">Father's Address:</label>
-                  <input
-                    type="text"
-                    id="father-address"
-                    name="father-address"
-                    placeholder="If different from student’s address"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="father-occupation">Father's Occupation:</label>
-                  <input
-                    type="text"
-                    id="father-occupation"
-                    name="father-occupation"
-                    placeholder="Occupation"
-                  />
-                </div>
+              <div class="form-group">
+                <label for="parent-address">Parent/Guardian Address:</label>
+                <input
+                  type="text"
+                  id="parent-address"
+                  name="parent-address"
+                  placeholder="If different from student’s address"
+                />
+              </div>
+              <div class="form-group">
+                <label for="parent-occupation"
+                  >Parent/Guardian Occupation:</label
+                >
+                <input
+                  type="text"
+                  id="parent-occupation"
+                  name="parent-occupation"
+                  placeholder="Occupation"
+                />
+              </div>
+            </div>
+
+            <!-- Mother's Information -->
+            <div class="form-content">
+              <h3>Mother's Information</h3>
+              <label>
+                <input type="checkbox" id="same-as-guardian-mother" />
+                Mother's information is the same as Guardian's
+              </label>
+              <div class="form-group">
+                <label for="mother-maiden-name">Mother's Maiden Name:</label>
+                <input
+                  type="text"
+                  id="mother-maiden-name"
+                  name="mother-maiden-name"
+                  
+                />
+              </div>
+              <div class="form-group">
+                <label for="mother-contact">Mother's Contact Info:</label>
+                <input
+                  type="text"
+                  id="mother-contact"
+                  name="mother-contact"
+                  
+                  placeholder="Phone or Email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="mother-address">Mother's Address:</label>
+                <input
+                  type="text"
+                  id="mother-address"
+                  name="mother-address"
+                  placeholder="If different from student’s address"
+                />
+              </div>
+              <div class="form-group">
+                <label for="mother-occupation">Mother's Occupation:</label>
+                <input
+                  type="text"
+                  id="mother-occupation"
+                  name="mother-occupation"
+                  placeholder="Occupation"
+                />
+              </div>
+            </div>
+
+            <!-- Father's Information -->
+            <div class="form-content">
+              <h3>Father's Information</h3>
+              <label>
+                <input type="checkbox" id="same-as-guardian-father" />
+                Father's information is the same as Guardian's
+              </label>
+              <div class="form-group">
+                <label for="father-name">Father's Name:</label>
+                <input type="text" id="father-name" name="father-name" />
+              </div>
+              <div class="form-group">
+                <label for="father-contact">Father's Contact Info:</label>
+                <input
+                  type="text"
+                  id="father-contact"
+                  name="father-contact"
+                  
+                  placeholder="Phone or Email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="father-address">Father's Address:</label>
+                <input
+                  type="text"
+                  id="father-address"
+                  name="father-address"
+                  placeholder="If different from student’s address"
+                />
+              </div>
+              <div class="form-group">
+                <label for="father-occupation">Father's Occupation:</label>
+                <input
+                  type="text"
+                  id="father-occupation"
+                  name="father-occupation"
+                  placeholder="Occupation"
+                />
               </div>
             </div>
           </div>
-        </form>
-        <button class="next-button" id="next-button">Next</button>
-        <button class="prev-button" id="prev-button">Previous</button>
-        <button class="close-button" id="close-button"><strong>X</strong></button>
+        </div>
+
+        <!-- Step 5: Account Information -->
+        <div class="step" id="step5">
+          <div class="power-scroll" id="scroll5">
+            <div class="form-content">
+              <h3>Account Information</h3>
+              <div class="form-group">
+                <label for="username">Username:</label>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  
+                  placeholder="Enter your username"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  size="8"
+                  
+                  placeholder="Enter your password"
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="confirm-password">Confirm Password:</label>
+                <input
+                  type="password"
+                  id="confirm-password"
+                  name="confirm-password"
+                  size="8"
+                  
+                  placeholder="Confirm your password"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="step" id="step6">
+          <div class="power-scroll" id="scroll6">
+            <div class="form-content">
+              <div class="form-group" id="confirmation">
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <button class="close-button" id="close-button">X</button>
+      <button class="next-button" id="next-button">Next</button>
+      <button class="prev-button" id="prev-button">Previous</button>
     </div>
 
     <span class="tooltip" id="tooltip">Enter</span>
-    <script src="index.js"></script>
+    <script type="module" src="index.js" defer></script>
 </body>
 </html>
