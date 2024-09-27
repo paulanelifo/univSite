@@ -9,6 +9,11 @@ p {
   width: 50%;
 }
 
+.team-member p {
+  width: 100%;
+  text-align: center;
+}
+
 .center {
   text-align: center;
   font-size: 30px;

@@ -520,13 +520,12 @@ let Main = {
 function open_building() {
     if (form.style.visibility === 'visible' || !hovered_building) return
     if (hovered_building.building_id === BUILDING_ID.REGISTRATION) {
-        // this.window.location = '/registration/'
         form.style.visibility = 'visible'
         user_move = false
         Main.ongoing_registration = true
     }
     if (hovered_building.building_id === BUILDING_ID.ABOUT) window.location = '/about/'
-    if (hovered_building.building_id === BUILDING_ID.ADMISSION) window.location = '/admission/'
+    if (hovered_building.building_id === BUILDING_ID.ADMISSION) window.location = '../#gallery-wrapper'
     if (hovered_building.building_id === BUILDING_ID.PROGRAM_OFFERS) window.location = '../#programs-offered'
     if (hovered_building.building_id === BUILDING_ID.HOME) window.location = '/'
 }
