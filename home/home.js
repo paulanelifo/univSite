@@ -34,55 +34,27 @@ function scrollToTop() {
     });
     }  
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-    
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-        target.scrollIntoView({
-            behavior: 'smooth'
-        });
-        }
-    });
-    });
-document.getElementById('login-button').addEventListener('click', function() {
-    document.getElementById('popup-overlay').style.display = 'block';
-    document.getElementById('login-container').style.display = 'flex'; // Use flex to maintain centering
-    document.body.style.overflow = 'hidden';
-    scrollToTop();
-    });
-document.getElementById('popup-overlay').addEventListener('click', function() {
-    this.style.display = 'none';
-    document.getElementById('login-container').style.display = 'none';
-    document.getElementById('register-container').style.display = 'none';
-    document.body.style.overflow = 'auto';
-    });
-document.getElementById('register-button').addEventListener('click', function() {
-    document.getElementById('popup-overlay').style.display = 'block';
-    document.getElementById('register-container').style.display = 'flex'; // Use flex to maintain centering
-    document.body.style.overflow = 'hidden';
-    scrollToTop();
-    });
-
 class RegistrationData {
-constructor(fullName, dob, gender, nationality, civilStatus, phoneNumber, email, permanentAddress, currentAddress, guardianInfo, motherInfo, fatherInfo, username, password) {
-    this.fullName = fullName;
-    this.dob = dob;
-    this.gender = gender;
-    this.nationality = nationality;
-    this.civilStatus = civilStatus;
-    this.phoneNumber = phoneNumber;
-    this.email = email;
-    this.permanentAddress = permanentAddress;
-    this.currentAddress = currentAddress;
-    this.guardianInfo = guardianInfo;
-    this.motherInfo = motherInfo;
-    this.fatherInfo = fatherInfo;
-    this.username = username;
-    this.password = password;
-}
-}
+    constructor(fullName, dob, gender, nationality, civilStatus, phoneNumber, email, permanentAddress, currentAddress, guardianInfo, motherInfo, fatherInfo, username, password) {
+        this.fullName = fullName;
+        this.dob = dob;
+        this.gender = gender;
+        this.nationality = nationality;
+        this.civilStatus = civilStatus;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.permanentAddress = permanentAddress;
+        this.currentAddress = currentAddress;
+        this.guardianInfo = guardianInfo;
+        this.motherInfo = motherInfo;
+        this.fatherInfo = fatherInfo;
+        this.username = username;
+        this.password = password;
+    }
+    }
+
+
+
 
 class FormStepper {
 
@@ -339,16 +311,16 @@ saveToJSONFile() {
 //--------------------------------------------------------
 
 handleNextButtonClick() {
-    if(this.selectedState===1){
-        if(!this.handleStep1()){
-            return;
-        }
-    }
+    // if(this.selectedState===1){
+    //     if(!this.handleStep1()){
+    //         return;
+    //     }
+    // }
     
-    if (!this.checkRequiredFields()) {
-        alert('Please fill out all required fields.');
-        return;
-    }
+    // if (!this.checkRequiredFields()) {
+    //     alert('Please fill out all required fields.');
+    //     return;
+    // }
 
     if (this.selectedState === 5) {
         this.saveRegistrationData(); // Save data on the last step
@@ -371,3 +343,36 @@ handlePrevButtonClick() {
 
 // Initialize the form stepper
 const formStepper = new FormStepper();
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+    
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+        target.scrollIntoView({
+            behavior: 'smooth'
+        });
+        }
+    });
+    });
+document.getElementById('login-button').addEventListener('click', function() {
+    document.getElementById('popup-overlay').style.display = 'block';
+    document.getElementById('login-container').style.display = 'flex'; // Use flex to maintain centering
+    document.body.style.overflow = 'hidden';
+    scrollToTop();
+    });
+document.getElementById('popup-overlay').addEventListener('click', function() {
+    this.style.display = 'none';
+    document.getElementById('login-container').style.display = 'none';
+    document.getElementById('register-container').style.display = 'none';
+    document.body.style.overflow = 'auto';
+    });
+document.getElementById('register-button').addEventListener('click', function() {
+    document.getElementById('popup-overlay').style.display = 'block';
+    document.getElementById('register-container').style.display = 'flex'; // Use flex to maintain centering
+    document.body.style.overflow = 'hidden';
+    scrollToTop();
+    formStepper.selectedState=1;
+    formStepper.updateDots();
+    formStepper.updateSteps();
+    });
