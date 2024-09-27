@@ -1,0 +1,114 @@
+body {
+    background-image: url('images/background.jpg');
+    background-size: cover; 
+    background-position: center;
+    color:rgb(255, 254, 253)
+}
+
+
+        .center {
+            text-align: center;
+            font-size: 30px;         
+        }
+
+        .background{
+            background-image: url('images/background.jpg');
+            background-size: cover; 
+            background-position: center;
+        }
+
+       
+        
+      
+
+        .heading {
+            text-align: left;
+            font-size: 60px;
+            padding-left: 100px;
+        }
+        .container {
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .container h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .container p {
+            font-size: 18px;
+            margin-bottom: 50px;
+        }
+        .team {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .team-member {
+            margin: 20px;
+            text-align: center;
+        }
+        .team-member img {
+            width: 250px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .team-member h3 {
+            font-size: 20px;
+            margin: 10px 0 5px;
+        }
+        .team-member p {
+            font-size: 16px;
+            margin: 0;
+        }
+            
+        @media only screen and (min-width: 701px) {
+            .about_body {
+                font-size: 20px;
+                text-align: center;
+                line-height: 1.5;
+                position: relative; /* Keep this */
+            
+            }
+            
+            .about_body::before {
+               
+                content: "";
+                position: absolute;
+                left: 20%; /* Adjust the left position to 0 to cover the entire width */
+                width: 58%; /* Set the width to cover the entire width */
+                height: 98%;
+              
+                background-color: #d3d3d3;
+                padding: 20px;
+        
+                background-color: rgba(0, 0, 0, 0.50); /* Keep the semi-transparent black overlay */
+                z-index: -1; /* Ensure the overlay is behind the text */
+        }
+
+     
+    }
+
+
+            @media only screen and (max-width: 700px) {
+                .about_body {
+                    font-size: 20px;
+                    text-align: center;
+                    line-height: 1.5;
+                    position: relative; /* Keep this */
+                
+                }
+                
+                .about_body::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 0; /* Adjust the left position to 0 to cover the entire width */
+                    width: 100%; /* Set the width to cover the entire width */
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.28); /* Keep the semi-transparent black overlay */
+                    z-index: -1; /* Ensure the overlay is behind the text */
+            }
+        }
+
+      
